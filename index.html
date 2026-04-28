@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kingshot Planner</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f172a;--s1:#1e293b;--s2:#334155;--bd:#475569;--tx:#e2e8f0;--mx:#94a3b8;--ac:#3b82f6}
+body{background:var(--bg);color:var(--tx);font:14px/1.5 system-ui,sans-serif;min-height:100vh}
+nav{display:flex;gap:4px;padding:8px 12px;background:var(--s1);border-bottom:1px solid var(--bd);flex-wrap:wrap;align-items:center}
+.nb{background:transparent;border:1px solid var(--bd);color:var(--tx);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:13px;white-space:nowrap}
+.nb:hover{background:var(--s2)}.nb.active{background:var(--ac);border-color:var(--ac);color:#fff}
+.ndw{position:relative}
+.dm{position:absolute;top:calc(100% + 4px);left:0;background:var(--s1);border:1px solid var(--bd);border-radius:8px;min-width:210px;display:none;z-index:200;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.7);max-height:70vh;overflow-y:auto}
+.dm.open{display:block}
+.dmg{font-size:10px;text-transform:uppercase;color:var(--mx);padding:6px 8px 2px;letter-spacing:1px}
+.dmi{display:block;width:100%;background:transparent;border:none;color:var(--tx);padding:7px 10px;border-radius:5px;cursor:pointer;text-align:left;font-size:13px}
+.dmi:hover{background:var(--s2)}
+.panel{display:none;padding:16px;max-width:1200px;margin:0 auto}
+.panel.active{display:block}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.card h3{font-size:15px;margin-bottom:6px}
+.ar{background:#450a0a;border:1px solid #7f1d1d;color:#fca5a5;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13px}
+.ay{background:#451a03;border:1px solid #92400e;color:#fde68a;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13px}
+.ab{background:#0c1a4a;border:1px solid #1e40af;color:#93c5fd;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13px}
+.ag{background:#052e16;border:1px solid #166534;color:#86efac;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13px}
+a.evl{color:var(--ac);text-decoration:none;cursor:pointer;border-bottom:1px dotted var(--ac)}
+a.evl:hover{color:#60a5fa}
+table.tasks{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+table.tasks th{text-align:left;padding:6px 10px;background:var(--s2);color:var(--mx);font-weight:500}
+table.tasks td{padding:6px 10px;border-bottom:1px solid var(--s2)}
+table.tasks tr:last-child td{border-bottom:none}
+.evlo{display:grid;grid-template-columns:210px 1fr;gap:12px}
+.evsb{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:8px;max-height:calc(100vh - 120px);overflow-y:auto}
+.evbtn{display:block;width:100%;background:transparent;border:none;color:var(--tx);padding:8px 10px;border-radius:6px;cursor:pointer;text-align:left;font-size:13px;margin-bottom:2px}
+.evbtn:hover{background:var(--s2)}.evbtn.sel{background:var(--ac);color:#fff}
+.evgl{font-size:10px;text-transform:uppercase;color:var(--mx);padding:6px 10px 2px;letter-spacing:1px}
+.evdt{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:16px;max-height:calc(100vh - 120px);overflow-y:auto}
+.srcl{display:inline-block;color:#60a5fa;text-decoration:none;font-size:12px;margin-top:4px;margin-right:8px;padding:3px 8px;background:#1e3a5f;border-radius:4px}
+.srcl:hover{background:#1d4ed8}
+.hmw{overflow-x:auto}.hm{border-collapse:collapse;font-size:12px;min-width:700px}
+.hm th,.hm td{padding:6px 8px;border:1px solid var(--bd);text-align:center}
+.hm th{background:var(--s2);color:var(--mx);font-weight:500;white-space:nowrap;font-size:11px}
+.hm td.rn{text-align:left;font-size:12px;white-space:nowrap;background:var(--s1)}
+.g4{background:#14532d;color:#86efac;font-weight:600}.g2{background:#1a3a2a;color:#6ee7b7}
+.r2{background:#431407;color:#fb923c}.r4{background:#450a0a;color:#fca5a5;font-weight:600}
+.h0{background:var(--s2);color:var(--bd)}
+.leg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px;align-items:center}
+.li{display:flex;align-items:center;gap:5px}.ld{width:12px;height:12px;border-radius:2px}
+.gw{overflow-x:auto;padding-bottom:8px}
+.grow{display:flex;align-items:center;margin-bottom:4px}
+.glbl{width:155px;flex-shrink:0;font-size:11px;color:var(--mx);text-align:right;padding-right:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gtrk{flex:1;height:26px;background:var(--s2);border-radius:4px;position:relative;min-width:480px}
+.gbar{position:absolute;top:3px;height:20px;border-radius:3px;display:flex;align-items:center;padding:0 6px;font-size:11px;overflow:hidden;white-space:nowrap;cursor:pointer;transition:opacity .15s}
+.gbar:hover{opacity:.8}
+.srow{display:flex;align-items:center;margin-bottom:4px}
+.slbl{width:155px;flex-shrink:0;font-size:12px;color:var(--tx);text-align:right;padding-right:10px}
+.strk{flex:1;height:24px;background:var(--s2);border-radius:4px;position:relative;min-width:480px}
+.sseg{position:absolute;top:2px;height:20px;border-radius:3px;display:flex;align-items:center;padding:0 5px;font-size:10px;overflow:hidden;white-space:nowrap;cursor:default}
+#tt{position:fixed;display:none;background:#1e293b;border:1px solid #475569;border-radius:8px;padding:10px 14px;max-width:260px;z-index:999;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.7)}
+#ttT{font-weight:600;font-size:13px;margin-bottom:2px}#ttD{font-size:11px;color:var(--mx);margin-bottom:6px}
+#ttB{font-size:12px;line-height:1.5}
+h2{font-size:18px;margin-bottom:12px}
+.secl{font-size:11px;text-transform:uppercase;color:var(--mx);letter-spacing:1px;margin:16px 0 6px}
+.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;margin-left:6px;vertical-align:middle}
+.ba{background:#14532d;color:#86efac}.bs{background:#422006;color:#fde68a}
+.bf{background:#1e1b4b;color:#a5b4fc}.bk{background:#450a0a;color:#fca5a5}
+.ggg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.kvk-box{background:linear-gradient(135deg,#450a0a,#7f1d1d);border:1px solid #991b1b;border-radius:12px;padding:16px 20px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kvk-title{font-size:13px;color:#fca5a5;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.kvk-sub{font-size:11px;color:#fca5a5;margin-top:2px}
+.kvk-nums{display:flex;gap:12px;align-items:flex-end}
+.kvk-unit{text-align:center}.kvk-n{font-size:26px;font-weight:700;color:#fff;line-height:1}
+.kvk-l{font-size:10px;color:#fca5a5;text-transform:uppercase}
+.ev-live{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;margin-bottom:8px}
+.ev-card{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:12px 14px}
+.ev-card.type-battle{border-left:3px solid #dc2626}
+.ev-card.type-competition{border-left:3px solid #2563eb}
+.ev-card.type-special{border-left:3px solid #d97706}
+.ev-card h4{font-size:13px;font-weight:600;margin-bottom:3px}
+.ev-card .dates{font-size:11px;color:var(--mx)}
+.ev-card .strat-link{font-size:11px;color:var(--ac);cursor:pointer;border-bottom:1px dotted var(--ac);margin-top:4px;display:inline-block}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-right:5px;animation:pulse 2s infinite}
+.stale-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f59e0b;margin-right:5px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.refresh-btn{background:transparent;border:1px solid var(--bd);color:var(--mx);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:12px;margin-left:8px}
+.refresh-btn:hover{background:var(--s2);color:var(--tx)}
+.last-updated{font-size:11px;color:var(--mx);margin-left:6px}
+@media(max-width:600px){.evlo{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <button class="nb active" id="tnow" onclick="showTab('now')">🔴 Now</button>
+  <button class="nb" id="ttl" onclick="showTab('timeline')">📅 Timeline</button>
+  <button class="nb" id="tres" onclick="showTab('resources')">📦 Resources</button>
+  <div class="ndw" id="ndw">
+    <button class="nb" id="tev" onclick="toggleDD(event)">📋 Events ▾</button>
+    <div class="dm" id="evdd"></div>
+  </div>
+  <button class="nb" id="tgear" onclick="showTab('gear')">🛡️ Gear</button>
+</nav>
+<div id="tt"><div id="ttT"></div><div id="ttD"></div><div id="ttB"></div></div>
+<div class="panel active" id="panel-now"></div>
+<div class="panel" id="panel-timeline"></div>
+<div class="panel" id="panel-resources"></div>
+<div class="panel" id="panel-events"></div>
+<div class="panel" id="panel-gear"></div>
+
+<script>
+// ===== STATIC STRATEGY DATA =====
+const EVENTS=[
+{id:'working-overtime',name:'Working Overtime',emoji:'⏱️',status:'active',
+ desc:'Earn points through construction, research, and troop training speedups.',
+ tasks:[{a:'Build/upgrade (1M min speedup)',p:'1'},{a:'Research (1M min speedup)',p:'1'},{a:'Train troops (1M min speedup)',p:'1'}],
+ tip:'Queue troop training ~9h before server reset to hit bonus windows.',
+ strat:'Use regular speedups freely here. Do NOT burn premium resources.',
+ sources:[{t:'Working Overtime — Kingshot Database',u:'https://kingshotdata.com/events/working-overtime-event/'}]},
+{id:'call-of-the-sovereign',name:'Call of the Sovereign',emoji:'👑',status:'active',
+ desc:'Governor development event. Score by spending Governor Energy and crafting/upgrading Governor Gear. Gen 2 server — Recruit Keys are Gen 3 only.',
+ tasks:[{a:'Spend Governor Energy',p:'high'},{a:'Craft Governor Gear',p:'high'},{a:'Upgrade Governor Gear',p:'medium'},{a:'Use Mythril Shards',p:'medium'}],
+ tip:'Stockpile Governor Energy before this event. Prioritize gear matching your troop type.',
+ strat:'Do not spend Governor Energy casually between events.',
+ sources:[{t:'Call of the Sovereign — Kingshot.net',u:'https://kingshot.net/events/call-of-the-sovereign'},{t:'Governor Gear Guide',u:'https://kingshothandbook.com/guide/governor-gear'}]},
+{id:'hero-rally',name:'Hero Rally',emoji:'🦸',status:'active',
+ desc:'Hero development scoring event. Earn points through Hero Roulette and hero leveling.',
+ tasks:[{a:'Hero Roulette 10-spin',p:'8,000'},{a:'Hero XP usage',p:'varies'},{a:'Hero skill upgrades',p:'medium'}],
+ tip:'Save premium ticket packs — same 8k score in KvK Prep.',
+ strat:'Use free/daily roulette. Do not open hoarded packs yet.',
+ sources:[{t:'Hero Rally — Kingshot Database',u:'https://kingshotdata.com/events/'}]},
+{id:'alliance-championship',name:'Alliance Championship',emoji:'🏆',status:'active',
+ desc:'Alliance competition. Points from rally kills, donations, and alliance activity.',
+ tasks:[{a:'Rally enemy bases',p:'high'},{a:'Alliance donations',p:'medium'},{a:'Complete alliance missions',p:'low'}],
+ tip:'Coordinate rally timing with leadership for maximum credit.',
+ strat:'Donations are zero-cost consistent points.',
+ sources:[{t:'Alliance Championship — Kingshot.net',u:'https://kingshot.net/events/alliance-championship'}]},
+{id:'swordland-showdown',name:'Swordland Showdown',emoji:'⚔️',status:'active',
+ desc:'PvP node control event. Node holding scores ~3× more than kills.',
+ tasks:[{a:'Hold resource nodes',p:'3× kills'},{a:'Defeat enemies',p:'1×'},{a:'Defend alliance nodes',p:'bonus'}],
+ tip:'Royal Stables reduces teleport cooldown by 50% — critical for rapid repositioning.',
+ strat:'Focus on holding nodes over kills.',
+ sources:[{t:'Swordland Showdown — Kingshot.net',u:'https://kingshot.net/events/swordland-showdown'}]},
+{id:'alliance-mobilization',name:'Alliance Mobilization',emoji:'🚩',status:'active',
+ desc:'Alliance-wide activity event. Points from coordinated marches and helping members.',
+ tasks:[{a:'Send help to members',p:'low'},{a:'Join alliance rallies',p:'high'},{a:'Complete alliance quests',p:'medium'}],
+ tip:'Low resource cost. Participate whenever available.',
+ strat:'Passive points — no premium resources needed.',
+ sources:[{t:'Alliance Mobilization — Kingshot.net',u:'https://kingshot.net/events/alliance-mobilization'}]},
+{id:'alliance-brawl',name:'Alliance Brawl',emoji:'🥊',status:'active',
+ desc:'Alliance vs Alliance event. Coordinated attacks and defense for alliance-wide scoring.',
+ tasks:[{a:'Alliance rally attacks',p:'high'},{a:'Defend territory',p:'high'},{a:'Individual kills',p:'medium'}],
+ tip:'Chip-hunting (hitting flagged small targets) accumulates fast.',
+ strat:'Save bulk troops and shields. Coordinate rally timing with your alliance.',
+ sources:[{t:'Alliance Brawl — Kingshot.net',u:'https://kingshot.net/events/alliance-brawl'}]},
+{id:'elysium-shop',name:'Elysium Shop',emoji:'🛍️',status:'active',
+ desc:'Limited-time shop with exclusive items purchasable with Elysium Coins.',
+ tasks:[{a:'Purchase Adv Taming Marks',p:'top priority'},{a:'Purchase Forgehammers',p:'high'},{a:'Purchase Speedup bundles',p:'medium'}],
+ tip:'Priority: Adv Taming Marks > Forgehammers > Speedups. Avoid cosmetics.',
+ strat:'Only buy items that score high in KvK/SG.',
+ sources:[{t:'Elysium Shop — Kingshot.net',u:'https://kingshot.net/shop/elysium'}]},
+{id:'stand-of-arms',name:'Stand of Arms',emoji:'🛡️',status:'soon',
+ desc:'Military development event (Age of Truegold). Also called "Armament Competition" in some calendars. 7-stage scoring.',
+ tasks:[{a:'Forgehammers',p:'800 each'},{a:'Adv Taming Marks',p:'15,000 stage'},{a:'Widget Schematics',p:'8,000 stage'},{a:'Train T10 troops',p:'39/troop'},{a:'Construction speedup',p:'1/1M min'}],
+ tip:'⚠️ Forgehammers = 800 pts here vs 4,000 in KvK. Use Charm to hit milestones — save Forgehammers for KvK.',
+ strat:'Hit milestones with troop training and construction. Avoid burning premium items.',
+ sources:[{t:'Stand of Arms — Kingshot Database',u:'https://kingshotdata.com/events/stand-of-arms/'}]},
+{id:'desert-trial',name:'Desert Trial',emoji:'🌵',status:'soon',
+ desc:'Combat challenge event. Wave-based. Also called "Champion\'s Way" on some servers.',
+ tasks:[{a:'Complete trial waves',p:'varies'},{a:'Combat boosts',p:'bonus'},{a:'Troop type matching',p:'required'}],
+ tip:'Survivability > speed. Match troop type to enemy.',
+ strat:'Use combat gear buffs before each run.',
+ sources:[{t:'Desert Trial — Kingshot.net',u:'https://kingshot.net/events/desert-trial'}]},
+{id:'kvk',name:'Kingdom vs Kingdom',emoji:'⚔️',status:'kvk',
+ desc:'Inter-kingdom war. Prep phase starts ~1 week before war. This is the primary destination for your best resources.',
+ tasks:[{a:'Mithril (Prep Phase)',p:'40,000'},{a:'Adv Taming Marks (Prep)',p:'15,000'},{a:'Widget Schematics (Prep)',p:'8,000'},{a:'Forgehammers (Prep)',p:'4,000 each'},{a:'Hero Roulette 10-spin (Prep)',p:'8,000'},{a:'Train T10 troops',p:'39/troop'},{a:'Speedup 1M min',p:'30'}],
+ tip:'Forgehammers = 4,000 pts in KvK vs 800 in Stand of Arms — 5× more valuable.',
+ strat:'KvK Prep mirrors SG. Commit premium resources here first, SG gets the remainder.',
+ sources:[{t:'KvK Guide — Kingshot Handbook',u:'https://kingshothandbook.com/events/kvk'},{t:'KvK Prep — Kingshot Database',u:'https://kingshotdata.com/events/kvk-prep/'}]},
+{id:'strongest-governor',name:'Strongest Governor',emoji:'🏅',status:'future',
+ desc:'7-stage personal development scoring event. Comes after KvK.',
+ tasks:[{a:'Mithril',p:'40,000'},{a:'Adv Taming Marks',p:'15,000'},{a:'Widget Schematics',p:'8,000'},{a:'Hero Roulette 10-spin',p:'8,000'},{a:'Forgehammers',p:'4,000 each'},{a:'Train T10 troops',p:'39/troop'},{a:'Speedup 1M min',p:'30'}],
+ tip:'Same structure as KvK Prep. Resources leftover from KvK go here.',
+ strat:'KvK comes first — commit best resources there. SG gets the remainder.',
+ sources:[{t:'Strongest Governor — Kingshot Database',u:'https://kingshotdata.com/events/strongest-governor/'}]},
+];
+
+const KEY_MAP={
+  allianceChampionship:'alliance-championship',allianceBrawl:'alliance-brawl',
+  swordlandShowdown:'swordland-showdown',desertTrial:'desert-trial',
+  armamentCompetition1:'stand-of-arms',armamentCompetition2:'stand-of-arms',
+  officerProject1:'call-of-the-sovereign',officerProject2:'call-of-the-sovereign',
+};
+const TYPE_COLORS={BATTLE:'#dc2626',COMPETITION:'#2563eb',SPECIAL:'#d97706',PACK:'#7c3aed'};
+const TYPE_LABELS={BATTLE:'Battle',COMPETITION:'Competition',SPECIAL:'Special',PACK:'Pack'};
+
+const RESOURCES=[
+{name:'⚡ Build/Research Speedups',vals:['g4','h0','h0','h0','h0','h0','g2','h0','g4','g4'],tip:'Great in Working OT and KvK/SG.'},
+{name:'⚡ Training Speedups',vals:['g4','h0','h0','h0','h0','h0','g2','h0','g4','g4'],tip:'Same as build speedups.'},
+{name:'🔨 Forgehammers',vals:['h0','h0','h0','h0','h0','h0','r2','h0','g4','g4'],tip:'800 pts in Stand of Arms vs 4,000 in KvK/SG. Avoid Stand of Arms.'},
+{name:'🐾 Adv Taming Marks',vals:['h0','h0','h0','h0','h0','h0','r4','h0','g4','g4'],tip:'15,000 pts in KvK and SG. Never spend casually.'},
+{name:'💎 Mithril',vals:['h0','h0','h0','h0','h0','h0','h0','h0','g4','g4'],tip:'40,000 pts in KvK and SG — highest value. Save everything.'},
+{name:'🔧 Widget Schematics',vals:['h0','h0','h0','h0','h0','h0','g2','h0','g4','g4'],tip:'8,000 pts in Stand of Arms and KvK/SG.'},
+{name:'🎰 Hero Roulette Tickets',vals:['h0','h0','g4','h0','h0','h0','r2','h0','g4','g4'],tip:'Best in Hero Rally and KvK/SG (8k pts/10-spin). Avoid Stand of Arms.'},
+{name:'👑 Governor Energy',vals:['h0','g4','h0','h0','h0','h0','h0','h0','h0','h0'],tip:'Spend during Call of the Sovereign. Stockpile between events.'},
+{name:'🧵 Gov Gear Materials',vals:['h0','g4','h0','h0','h0','h0','h0','h0','h0','h0'],tip:'Craft during Call of the Sovereign only.'},
+{name:'💠 Mythril Shards',vals:['h0','g2','h0','h0','h0','h0','h0','h0','g2','h0'],tip:'Gear upgrades in Call of the Sovereign and KvK.'},
+];
+const RCOLS=['Working OT','Call of Sov','Hero Rally','Alliance Champ','Swordland','Alliance Mob','Stand of Arms','Desert Trial','KvK Prep','Str. Governor'];
+const RTIPS={g4:'✓ Use here — great value',g2:'✓ Use here — good value',r2:'↓ Avoid — better events ahead',r4:'✗ Do NOT use — save for KvK/SG',h0:'— Not applicable'};
+
+const DAYS=56;
+const SAVE=[
+{name:'🔨 Forgehammers',segs:[{s:0,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:'4,000 pts in KvK — wait for it'},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'4,000 pts each'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'4,000 pts in SG too'}]},
+{name:'🐾 Adv Taming',segs:[{s:0,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:'15k pts in KvK — never spend casually'},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'~15,000 pts. KvK first.'},{s:33,e:47,l:'✓ SG remainder',bg:'#2a0f5a',fg:'#c084fc',tip:'Leftover marks for SG Stage 3'}]},
+{name:'💎 Mithril',segs:[{s:0,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:'40k pts in KvK — highest value'},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'40,000 pts'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'40,000 pts'}]},
+{name:'🔧 Widgets',segs:[{s:0,e:8,l:'↓ Stand OK',bg:'#1a3a2a',fg:'#6ee7b7',tip:'8k pts — same value as KvK, ok to use'},{s:8,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'8,000 pts'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'8,000 pts'}]},
+{name:'🎰 Hero Roulette',segs:[{s:0,e:3,l:'✓ Hero Rally',bg:'#0c4a6e',fg:'#7dd3fc',tip:'Good value here'},{s:3,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:'Save packs for KvK'},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'8,000 pts/10-spin'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'8,000 pts'}]},
+{name:'👑 Gov Energy',segs:[{s:0,e:14,l:'✓ Call of Sov',bg:'#4c1d95',fg:'#ddd6fe',tip:'Spend during CoS window'},{s:14,e:47,l:'Accumulate',bg:'#1e293b',fg:'#6b7280',tip:'Save for next CoS cycle'}]},
+{name:'⚡ Speedups',segs:[{s:0,e:8,l:'✓ Working OT',bg:'#1a2744',fg:'#93c5fd',tip:'Build/research/training'},{s:8,e:47,l:'✓ Use freely',bg:'#14532d',fg:'#86efac',tip:'Good in KvK and SG too'}]},
+];
+
+// ===== STATE =====
+let activeTab='now', selectedEvent=EVENTS[0].id, liveData=null, fetchedAt=null;
+
+// ===== DATA FETCH =====
+// Fetches from /data/events.json (committed by GitHub Actions every 4h).
+// Falls back to direct API call (may hit CORS in some browsers).
+async function fetchLive(){
+  // Try local cached file first (same-origin, no CORS)
+  try{
+    const r=await fetch('./data/events.json?_='+Date.now());
+    if(r.ok){
+      liveData=await r.json();
+      fetchedAt=liveData._fetchedAt?new Date(liveData._fetchedAt):new Date();
+      return true;
+    }
+  }catch(e){}
+  // Fallback: direct API (works if CORS allows it or in local dev)
+  try{
+    const r=await fetch('https://kingshot.net/api/events');
+    if(r.ok){ liveData=await r.json(); fetchedAt=new Date(); return true; }
+  }catch(e){}
+  return false;
+}
+
+function fmtDate(iso){return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function ageStr(d){if(!d)return '';const m=Math.round((Date.now()-d.getTime())/60000);if(m<2)return 'just now';if(m<60)return `${m}m ago`;return `${Math.round(m/60)}h ago`;}
+
+// ===== NAV =====
+function showTab(t){
+  activeTab=t;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+t).classList.add('active');
+  document.getElementById('tnow').classList.toggle('active',t==='now');
+  document.getElementById('ttl').classList.toggle('active',t==='timeline');
+  document.getElementById('tres').classList.toggle('active',t==='resources');
+  document.getElementById('tev').classList.toggle('active',t==='events');
+  document.getElementById('tgear').classList.toggle('active',t==='gear');
+  if(t==='now') renderNowContent();
+  if(t==='timeline') renderTimeline();
+  if(t==='resources') renderResources();
+  if(t==='events') renderEvents();
+  if(t==='gear') renderGear();
+  closeDD();
+}
+function toggleDD(e){e.stopPropagation();document.getElementById('evdd').classList.toggle('open');}
+function closeDD(){document.getElementById('evdd').classList.remove('open');}
+document.addEventListener('click',closeDD);
+function showEvent(id){selectedEvent=id;showTab('events');}
+
+function buildDropdown(){
+  const groups=[{label:'Active Now',s:'active'},{label:'Starts Soon',s:'soon'},{label:'KvK',s:'kvk'},{label:'Future',s:'future'}];
+  let h='';
+  groups.forEach(g=>{
+    const evs=EVENTS.filter(e=>e.status===g.s);
+    if(!evs.length)return;
+    h+=`<div class="dmg">${g.label}</div>`;
+    evs.forEach(e=>h+=`<button class="dmi" onclick="showEvent('${e.id}')">${e.emoji} ${e.name}</button>`);
+  });
+  document.getElementById('evdd').innerHTML=h;
+}
+
+// ===== TOOLTIP =====
+const tt=document.getElementById('tt'),ttT=document.getElementById('ttT'),ttD=document.getElementById('ttD'),ttB=document.getElementById('ttB');
+function showTip(e,title,dates,body){ttT.textContent=title;ttD.textContent=dates;ttB.innerHTML=body;tt.style.display='block';moveTip(e);}
+function moveTip(e){const x=e.clientX,y=e.clientY,tw=tt.offsetWidth,th=tt.offsetHeight,vw=window.innerWidth,vh=window.innerHeight;let l=x+14,t=y+14;if(l+tw>vw-8)l=x-tw-14;if(t+th>vh-8)t=y-th-14;tt.style.left=l+'px';tt.style.top=t+'px';}
+function hideTip(){tt.style.display='none';}
+
+// ===== NOW TAB =====
+function renderNowContent(){
+  const el=document.getElementById('panel-now');
+  const stale=fetchedAt&&(Date.now()-fetchedAt.getTime())>6*3600000;
+  const ts=fetchedAt?`<span class="last-updated">${stale?'<span class="stale-dot"></span>':'<span class="live-dot"></span>'}data from ${ageStr(fetchedAt)}</span>`:'';
+  let h=`<h2 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">🔴 Now${ts}</h2>`;
+
+  if(liveData){
+    const kd=liveData.kvk;
+    if(kd&&kd.timeLeft){
+      const tl=kd.timeLeft;
+      h+=`<div class="kvk-box">
+        <div><div class="kvk-title">⚔️ Kingdom vs Kingdom</div><div class="kvk-sub">Event #${kd.eventNumber} — Save your best resources!</div></div>
+        <div class="kvk-nums">
+          <div class="kvk-unit"><div class="kvk-n">${tl.days}</div><div class="kvk-l">days</div></div>
+          <div class="kvk-unit"><div class="kvk-n">${tl.hours}</div><div class="kvk-l">hrs</div></div>
+          <div class="kvk-unit"><div class="kvk-n">${tl.minutes}</div><div class="kvk-l">min</div></div>
+        </div>
+      </div>`;
+    }
+    const cal=liveData.calendar;
+    if(cal){
+      const active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom'));
+      const upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date());
+      h+=`<div style="font-size:12px;color:var(--mx);margin-bottom:10px">Week ${cal.currentWeek} · ${cal.currentDay} · data via <a href="https://kingshot.net" target="_blank" style="color:var(--ac)">kingshot.net</a> (updated every 4h by GitHub Actions)</div>`;
+      h+=`<div class="secl">Active Now</div><div class="ev-live">`;
+      active.forEach(ev=>{
+        const mapped=KEY_MAP[ev.titleKey];
+        const myEv=mapped?EVENTS.find(e=>e.id===mapped):null;
+        const tc=(ev.type||'').toLowerCase();
+        h+=`<div class="ev-card type-${tc}">
+          <h4>${ev.title}</h4>
+          <div class="dates">Ends ${fmtDate(ev.endUtc)} · <span style="color:${TYPE_COLORS[ev.type]||'#94a3b8'}">${TYPE_LABELS[ev.type]||ev.type}</span></div>
+          ${myEv?`<div class="strat-link" onclick="showEvent('${myEv.id}')">📋 Strategy & scoring →</div>`:''}
+        </div>`;
+      });
+      h+=`</div>`;
+      if(upcoming.length){
+        h+=`<div class="secl">Coming This Week</div><div class="ev-live">`;
+        upcoming.slice(0,6).forEach(ev=>{
+          const mapped=KEY_MAP[ev.titleKey];
+          const myEv=mapped?EVENTS.find(e=>e.id===mapped):null;
+          const tc=(ev.type||'').toLowerCase();
+          h+=`<div class="ev-card type-${tc}" style="opacity:.85">
+            <h4>${ev.title}</h4>
+            <div class="dates">${fmtDate(ev.startUtc)} → ${fmtDate(ev.endUtc)} · <span style="color:${TYPE_COLORS[ev.type]||'#94a3b8'}">${TYPE_LABELS[ev.type]||ev.type}</span></div>
+            ${myEv?`<div class="strat-link" onclick="showEvent('${myEv.id}')">📋 Strategy & scoring →</div>`:''}
+          </div>`;
+        });
+        h+=`</div>`;
+      }
+    }
+  } else {
+    h+=`<div class="ay">⚠️ Could not load event data. Showing static fallback.</div>`;
+    EVENTS.filter(e=>e.status==='active').forEach(ev=>{
+      h+=`<div class="card"><h3>${ev.emoji} <a class="evl" onclick="showEvent('${ev.id}')">${ev.name}</a></h3><p style="color:var(--mx);font-size:13px">${ev.desc}</p></div>`;
+    });
+  }
+
+  h+=`<div class="secl" style="margin-top:20px">Upcoming Major Events</div>`;
+  ['stand-of-arms','desert-trial','kvk','strongest-governor'].forEach(id=>{
+    const ev=EVENTS.find(e=>e.id===id); if(!ev)return;
+    const bm={soon:'bs',kvk:'bk',future:'bf'};
+    const bl={soon:'Soon',kvk:`~${liveData&&liveData.kvk?liveData.kvk.timeLeft.days:19} days`,future:'Future'};
+    h+=`<div class="card"><h3>${ev.emoji} <a class="evl" onclick="showEvent('${ev.id}')">${ev.name}</a><span class="badge ${bm[ev.status]||'bf'}">${bl[ev.status]||''}</span></h3><p style="color:var(--mx);font-size:13px">${ev.tip}</p></div>`;
+  });
+  el.innerHTML=h;
+}
+
+// ===== TIMELINE =====
+function renderTimeline(){
+  const el=document.getElementById('panel-timeline');
+  const base=new Date(); base.setHours(0,0,0,0);
+  function dayOf(iso){return Math.round((new Date(iso)-base)/86400000);}
+  function dayLabel(d){const dt=new Date(base);dt.setDate(dt.getDate()+d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+  const kvkDay=liveData&&liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
+  let ganttEvs=[];
+  if(liveData&&liveData.calendar){
+    (liveData.calendar.events||[]).filter(e=>e.type!=='PACK').forEach(ev=>{
+      const s=Math.max(0,dayOf(ev.startUtc)), e2=dayOf(ev.endUtc)+1;
+      if(e2<0||s>DAYS)return;
+      const mapped=KEY_MAP[ev.titleKey];
+      ganttEvs.push({name:ev.title,s,e:e2,c:TYPE_COLORS[ev.type]||'#475569',id:mapped||ev.titleKey});
+    });
+  }
+  ganttEvs.push({name:'KvK Prep Phase',s:kvkDay-7,e:kvkDay,c:'#991b1b',id:'kvk'});
+  ganttEvs.push({name:'Kingdom vs Kingdom',s:kvkDay,e:kvkDay+7,c:'#7f1d1d',id:'kvk'});
+  ganttEvs.push({name:'Strongest Governor',s:kvkDay+14,e:kvkDay+28,c:'#92400e',id:'strongest-governor'});
+  const seen=new Set(); ganttEvs=ganttEvs.filter(e=>{const k=e.name+e.s;if(seen.has(k))return false;seen.add(k);return true;}).sort((a,b)=>a.s-b.s);
+  const tickDays=[0,7,14,21,28,35,42,49];
+  let h=`<h2>📅 Timeline</h2>`;
+  if(liveData) h+=`<div class="ag" style="margin-bottom:12px">⚡ Live — KvK in ~${kvkDay} days (${dayLabel(kvkDay)}). Updated every 4h.</div>`;
+  else h+=`<div class="ay" style="margin-bottom:12px">⚠️ Using estimated dates. KvK ~${kvkDay} days.</div>`;
+  h+=`<div class="gw"><div class="grow" style="margin-bottom:2px"><div class="glbl"></div><div class="gtrk" style="height:20px;background:transparent">`;
+  tickDays.forEach(d=>h+=`<div style="position:absolute;left:${(d/DAYS)*100}%;font-size:10px;color:var(--mx);transform:translateX(-50%)">${dayLabel(d)}</div>`);
+  h+=`</div></div>`;
+  ganttEvs.forEach(ev=>{
+    const l=Math.max(0,(ev.s/DAYS)*100), w=Math.min(100-l,((ev.e-ev.s)/DAYS)*100);
+    if(w<=0)return;
+    h+=`<div class="grow"><div class="glbl">${ev.name}</div><div class="gtrk"><div class="gbar" style="left:${l}%;width:${w}%;background:${ev.c};color:#fff" onmouseenter="showTip(event,'${ev.name.replace(/'/g,"\\'")}','${dayLabel(ev.s)} – ${dayLabel(ev.e)}','')" onmousemove="moveTip(event)" onmouseleave="hideTip()" onclick="showEvent('${ev.id}')">${ev.name}</div></div></div>`;
+  });
+  h+=`</div><div class="secl" style="margin-top:20px">Resource Save Windows</div><div class="gw">`;
+  SAVE.forEach(row=>{
+    h+=`<div class="srow"><div class="slbl">${row.name}</div><div class="strk">`;
+    row.segs.forEach(seg=>{
+      const l=(seg.s/DAYS)*100, w=((seg.e-seg.s)/DAYS)*100;
+      h+=`<div class="sseg" style="left:${l}%;width:${w}%;background:${seg.bg};color:${seg.fg}" onmouseenter="showTip(event,'${row.name}','Days ${seg.s}–${seg.e}','${seg.tip}')" onmousemove="moveTip(event)" onmouseleave="hideTip()">${seg.l}</div>`;
+    });
+    h+=`</div></div>`;
+  });
+  h+=`</div>`;
+  el.innerHTML=h;
+}
+
+// ===== RESOURCES =====
+function renderResources(){
+  const el=document.getElementById('panel-resources');
+  if(el.dataset.built)return; el.dataset.built='1';
+  let h=`<h2>📦 Resource Heatmap</h2><div class="ag">Gen 2 server — Recruit Keys are Gen 3 only and excluded.</div>`;
+  h+=`<div class="leg"><strong style="font-size:12px;color:var(--mx)">Color:</strong>`;
+  [['#14532d','✓ Use here — great'],['#1a3a2a','✓ Use here'],['#431407','↓ Avoid'],['#450a0a','✗ Do NOT use'],['#334155','— N/A']].forEach(([bg,l])=>h+=`<div class="li"><div class="ld" style="background:${bg}"></div><span>${l}</span></div>`);
+  h+=`</div><div class="hmw"><table class="hm"><thead><tr><th>Resource</th>`;
+  RCOLS.forEach(c=>h+=`<th>${c}</th>`);
+  h+=`</tr></thead><tbody>`;
+  RESOURCES.forEach(row=>{
+    h+=`<tr><td class="rn" onmouseenter="showTip(event,'${row.name}','','${row.tip}')" onmousemove="moveTip(event)" onmouseleave="hideTip()">${row.name} ℹ️</td>`;
+    row.vals.forEach((v,i)=>{
+      const lbl=v==='g4'?'✓✓':v==='g2'?'✓':v==='r2'?'↓':v==='r4'?'✗':'—';
+      h+=`<td class="${v}" onmouseenter="showTip(event,'${row.name}','${RCOLS[i]}','${RTIPS[v]||''}')" onmousemove="moveTip(event)" onmouseleave="hideTip()">${lbl}</td>`;
+    });
+    h+=`</tr>`;
+  });
+  h+=`</tbody></table></div>`;
+  el.innerHTML=h;
+}
+
+// ===== EVENTS TAB =====
+function renderEvents(){
+  const el=document.getElementById('panel-events');
+  const groups=[{label:'Active Now',s:'active'},{label:'Starts Soon',s:'soon'},{label:'KvK',s:'kvk'},{label:'Future',s:'future'}];
+  let h=`<div class="evlo"><div class="evsb">`;
+  groups.forEach(g=>{
+    const evs=EVENTS.filter(e=>e.status===g.s);
+    if(!evs.length)return;
+    h+=`<div class="evgl">${g.label}</div>`;
+    evs.forEach(e=>h+=`<button class="evbtn${e.id===selectedEvent?' sel':''}" id="ebtn-${e.id}" onclick="selectEvent('${e.id}')">${e.emoji} ${e.name}</button>`);
+  });
+  h+=`</div><div class="evdt" id="evdetail">${renderEventDetail(EVENTS.find(e=>e.id===selectedEvent))}</div></div>`;
+  el.innerHTML=h;
+}
+function selectEvent(id){
+  selectedEvent=id;
+  document.querySelectorAll('.evbtn').forEach(b=>b.classList.remove('sel'));
+  const btn=document.getElementById('ebtn-'+id); if(btn)btn.classList.add('sel');
+  const detail=document.getElementById('evdetail'); if(detail)detail.innerHTML=renderEventDetail(EVENTS.find(e=>e.id===id));
+}
+function renderEventDetail(ev){
+  if(!ev)return '';
+  const bm={active:'ba',soon:'bs',kvk:'bk',future:'bf'},bl={active:'Active',soon:'Soon',kvk:'KvK',future:'Future'};
+  let h=`<h2>${ev.emoji} ${ev.name} <span class="badge ${bm[ev.status]}">${bl[ev.status]}</span></h2>`;
+  h+=`<p style="color:var(--mx);font-size:13px;margin-bottom:10px">${ev.desc}</p>`;
+  if(ev.tip) h+=`<div class="ab" style="margin-bottom:10px">💡 ${ev.tip}</div>`;
+  if(ev.strat) h+=`<div class="ay" style="margin-bottom:10px">🎯 ${ev.strat}</div>`;
+  h+=`<div class="secl">Scoring Tasks</div><table class="tasks"><thead><tr><th>Action</th><th>Points</th></tr></thead><tbody>`;
+  ev.tasks.forEach(t=>h+=`<tr><td>${t.a}</td><td style="color:#86efac;font-weight:600">${t.p}</td></tr>`);
+  h+=`</tbody></table>`;
+  if(ev.sources&&ev.sources.length){
+    h+=`<div class="secl">Sources</div><div>`;
+    ev.sources.forEach(s=>h+=`<a class="srcl" href="${s.u}" target="_blank">🔗 ${s.t}</a>`);
+    h+=`</div>`;
+  }
+  return h;
+}
+
+// ===== GEAR TAB =====
+function renderGear(){
+  const el=document.getElementById('panel-gear');
+  if(el.dataset.built)return; el.dataset.built='1';
+  let h=`<h2>🛡️ Governor Gear</h2>`;
+  h+=`<div class="ab" style="margin-bottom:12px">Specialize in <strong>one troop type</strong>. Never split across types.</div>`;
+  h+=`<div class="ar" style="margin-bottom:12px">⚠️ Never gamble on &lt;100% rarity chance. Epic vs rare is a massive gap.</div>`;
+  [{name:'🧵 Satin',desc:'Primary crafting material. Farm during Elysium events. Priority buy in the shop.'},{name:'🪡 Gilded Threads',desc:'Upgrade material. Use during Call of the Sovereign to upgrade pieces.'},{name:'🎨 Artisan\'s Vision',desc:'Required for high-tier crafts. Save for epic-rarity only.'},{name:'💠 Mythril Shards',desc:'Gear enhancement. Spend during Call of the Sovereign and KvK.'},{name:'👑 Governor Energy',desc:'Primary Call of the Sovereign resource. Stockpile between events.'},{name:'🛡️ Troop Specialization',desc:'Pick one: cavalry, infantry, or ranged. Build all gear for that type only.'}].forEach(t=>{
+    h+=`<div class="card" style="margin-bottom:8px"><h3>${t.name}</h3><p style="color:var(--mx);font-size:13px">${t.desc}</p></div>`;
+  });
+  el.innerHTML=h;
+}
+
+// ===== INIT =====
+buildDropdown();
+document.getElementById('panel-now').innerHTML=`<h2>🔴 Now</h2><div class="ab">⏳ Loading live event data…</div>`;
+fetchLive().then(()=>{ showTab('now'); });
+</script>
+</body>
+</html>

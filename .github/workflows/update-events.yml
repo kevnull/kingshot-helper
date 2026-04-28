@@ -1,0 +1,38 @@
+name: Update Events Data
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'   # every 4 hours
+  workflow_dispatch:          # allow manual trigger from GitHub UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch live events from kingshot.net
+        run: |
+          curl -sf https://kingshot.net/api/events \
+            -H "Accept: application/json" \
+            -o data/events.json
+          echo "Fetched at $(date -u)"
+          python3 -c "
+          import json
+          d = json.load(open('data/events.json'))
+          d['_fetchedAt'] = '$(date -u +%Y-%m-%dT%H:%M:%SZ)'
+          json.dump(d, open('data/events.json','w'))
+          print('KvK days:', d['kvk']['timeLeft']['days'])
+          print('Active events:', len(d['calendar']['activeEvents']))
+          "
+
+      - name: Commit if data changed
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data/events.json
+          git diff --staged --quiet \
+            && echo "No change" \
+            || git commit -m "chore: update events data [skip ci]" && git push
