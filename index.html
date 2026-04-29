@@ -371,8 +371,8 @@ function hideTip(){tt.style.display='none';}
 // ===== NOW TAB =====
 function renderNowContent(){
   const el=document.getElementById('panel-now');
-  const stale=fetchedAt&&(Date.now()-fetchedAt.getTime())>6*3600000;
-  const ts=fetchedAt?`<span class="last-updated">${stale?'<span class="stale-dot"></span>':'<span class="live-dot"></span>'}data from ${ageStr(fetchedAt)}</span>`:'';
+  const stale=fetchedAt&&(Date.now()-fetchedAt.getTime())>4*3600000;
+  const ts=fetchedAt?`<span class="last-updated">${stale?'<span class="stale-dot"></span>':'<span class="live-dot"></span>'}updated ${ageStr(fetchedAt)} · refreshes every 4h</span>`:'';
   let h=`<h2 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">🔴 Now${ts}</h2>`;
 
   if(liveData){
@@ -390,8 +390,11 @@ function renderNowContent(){
     }
     const cal=liveData.calendar;
     if(cal){
-      const active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom'));
-      const upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date());
+      const kvkDay=liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
+      const omit=lockedCalendarKeys(kvkDay);
+      function isLocked(ev){const nl=ev.title.toLowerCase();return Array.from(omit).some(o=>nl.includes(o));}
+      const active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom')&&!isLocked(e));
+      const upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date()&&!isLocked(e));
       h+=`<div style="font-size:12px;color:var(--mx);margin-bottom:10px">Week ${cal.currentWeek} · ${cal.currentDay} · data via <a href="https://kingshot.net" target="_blank" style="color:var(--ac)">kingshot.net</a> (updated every 4h) · <strong style="color:#fde68a">⚠ universal calendar — verify against your server</strong></div>`;
       h+=`<div class="secl">Active Now</div><div class="ev-live">`;
       active.forEach(ev=>{
