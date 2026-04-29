@@ -1,0 +1,64 @@
+{
+  "_source": "https://kingshot.net/server-timeline",
+  "_updatedAt": "2026-04-29",
+  "_notes": "Milestone day ranges use dayMin/dayMax. Event unlock conditions use either unlockDayMin (server age threshold) or unlockAfterEvent (triggered by another in-game event).",
+
+  "milestones": [
+    { "dayMin": 0,   "dayMax": 0,   "category": "heroes",    "name": "Generation 1 Heroes",               "desc": "Infantry, Cavalry, Archer (Epic) available at launch" },
+    { "dayMin": 14,  "dayMax": 14,  "category": "map",       "name": "Fog Lifted from Plains",            "desc": "Plains area becomes accessible" },
+    { "dayMin": 38,  "dayMax": 38,  "category": "map",       "name": "Fog Lifted from Fertile Land",      "desc": "Fertile Land area becomes accessible" },
+    { "dayMin": 40,  "dayMax": 50,  "category": "heroes",    "name": "Generation 2 Heroes",               "desc": "Infantry, Cavalry (Legendary)" },
+    { "dayMin": 45,  "dayMax": 45,  "category": "alliance",  "name": "Alliance Resource Exchange",        "desc": "Alliance members can exchange resources" },
+    { "dayMin": 54,  "dayMax": 54,  "category": "event",     "name": "First Castle Battle",               "desc": "First castle battle event begins" },
+    { "dayMin": 55,  "dayMax": 60,  "category": "pets",      "name": "Generation 1 Pets",                 "desc": "Gray Wolf, Lynx, Bison" },
+    { "dayMin": 70,  "dayMax": 70,  "category": "event",     "name": "Age of Truegold",                   "desc": "Truegold items become available" },
+    { "dayMin": 70,  "dayMax": 80,  "category": "event",     "name": "Kingdom of Power (KvK)",            "desc": "Kingdom becomes eligible for Kingdom of Power event" },
+    { "dayMin": 75,  "dayMax": 80,  "category": "pets",      "name": "Generation 2 Pets",                 "desc": "Cheetah, Moose" },
+    { "dayMin": 105, "dayMax": 110, "category": "pets",      "name": "Generation 3 Pets",                 "desc": "Lion, Grizzly Bear" },
+    { "dayMin": 105, "dayMax": 120, "category": "heroes",    "name": "Generation 3 Heroes",               "desc": "Infantry, Archer (Legendary)" },
+    { "dayMin": 150, "dayMax": 150, "category": "building",  "name": "Truegold Level 5 & Truegold Crucible", "desc": "Truegold Level 5 and Truegold Crucible building unlock" },
+    { "dayMin": 170, "dayMax": 170, "category": "event",     "name": "Artisan's Vision & Vikings Vengeance Lv12-20", "desc": "Artisan's Vision in Alliance Championship Store; Vikings Vengeance levels 12–20" },
+    { "dayMin": 190, "dayMax": 200, "category": "heroes",    "name": "Generation 4 Heroes & Pets",        "desc": "Infantry, Cavalry (Mythic); Giant Rhino, Mighty Bison. Gen 2 Heroes available in Recruitment & Intel Missions." },
+    { "dayMin": 220, "dayMax": 220, "category": "building",  "name": "War Academy",                       "desc": "War Academy building unlocks" },
+    { "dayMin": 270, "dayMax": 280, "category": "heroes",    "name": "Generation 5 Heroes & Pets",        "desc": "Infantry, Archer (Mythic); Great Moose, Alpha Black Panther" },
+    { "dayMin": 350, "dayMax": 360, "category": "heroes",    "name": "Generation 6 Heroes & Pets",        "desc": "Regal White Lion, Ironclad War Elephant" }
+  ],
+
+  "eventUnlocks": [
+    {
+      "calendarKey": "alliance brawl",
+      "name": "Alliance Brawl",
+      "unlockAfterEvent": "kvk",
+      "unlockDayMin": null,
+      "notes": "Unlocks after server's first Kingdom of Power (KvK) event. KvK window is day 70–80."
+    },
+    {
+      "calendarKey": "officer project",
+      "name": "Officer Project",
+      "unlockAfterEvent": "truegold_complete",
+      "unlockDayMin": 70,
+      "notes": "Unlocks after completing Age of Truegold. Age of Truegold starts at day 70; Officer Project requires finishing it, so effective unlock is somewhat after day 70."
+    },
+    {
+      "calendarKey": "strongest governor",
+      "name": "Strongest Governor",
+      "unlockAfterEvent": "kvk",
+      "unlockDayMin": null,
+      "notes": "Runs after each KvK. Skip any Strongest Governor on the calendar that starts before the server's first KvK day."
+    },
+    {
+      "calendarKey": "merchant empire",
+      "name": "Merchant Empire",
+      "unlockAfterEvent": null,
+      "unlockDayMin": null,
+      "notes": "Not confirmed available on Gen 2 servers. Filtered from timeline pending confirmation."
+    },
+    {
+      "calendarKey": "vikings vengeance",
+      "name": "Vikings Vengeance",
+      "unlockAfterEvent": null,
+      "unlockDayMin": 170,
+      "notes": "Levels 12–20 unlock at day 170 per server timeline. Lower levels may be available earlier."
+    }
+  ]
+}

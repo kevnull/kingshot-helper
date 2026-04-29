@@ -99,12 +99,14 @@ h2{font-size:18px;margin-bottom:12px}
     <div class="dm" id="evdd"></div>
   </div>
   <button class="nb" id="tgear" onclick="showTab('gear')">🛡️ Gear</button>
+  <button class="nb" id="tset" onclick="showTab('settings')" style="margin-left:auto">⚙️</button>
 </nav>
 <div id="tt"><div id="ttT"></div><div id="ttD"></div><div id="ttB"></div></div>
 <div class="panel active" id="panel-now"></div>
 <div class="panel" id="panel-resources"></div>
 <div class="panel" id="panel-events"></div>
 <div class="panel" id="panel-gear"></div>
+<div class="panel" id="panel-settings"></div>
 
 <script>
 // ===== STATIC STRATEGY DATA =====
@@ -116,19 +118,19 @@ const EVENTS=[
  strat:'Use regular speedups freely here. Do NOT burn premium resources.',
  sources:[{t:'Working Overtime — Kingshot Database',u:'https://kingshotdata.com/events/working-overtime-event/'}]},
 {id:'power-up',name:'Power Up',emoji:'⚡',status:'soon',
- desc:'Personal development event. Earn 1 point per Power gained through Construction, Research, or Training/promoting troops.',
+ desc:'Personal development event (2 days). Earn 1 point per Power gained through Construction, Research, or Training/promoting troops.',
  tasks:[{a:'Construction power gains',p:'1/Power'},{a:'Research power gains',p:'1/Power'},{a:'Troop training/promoting',p:'1/Power'}],
  tip:'Free points — overlap with your existing build/research queues. No premium items needed.',
  strat:'Burn regular speedups on queued buildings and research. Troop training counts too.',
  sources:[{t:'Power Up — KingShot Wiki',u:'https://kingshot.fandom.com/wiki/Power_Up'}]},
 {id:'mystic-divination',name:'Mystic Divination',emoji:'🔮',status:'soon',
- desc:'Card-flip event. Choose a Wish Reward (Forgehammers, Charm Materials, Gems, Speedups, or Hero XP), then flip cards using Fortune Tokens until you find it. 2-day event, repeats every ~4 weeks.',
+ desc:'Card-flip event (2 days, repeats every ~4 weeks). Choose a Wish Reward (Forgehammers, Charm Materials, Gems, Speedups, or Hero XP), then flip cards using Fortune Tokens until you find it.',
  tasks:[{a:'Flip card (1st)',p:'1 token'},{a:'Flip card (2nd–5th)',p:'2–6 tokens'},{a:'Flip card (6th–10th)',p:'8–25 tokens'},{a:'Full 10-card board',p:'96 tokens total'}],
  tip:'F2P earns ~46 tokens per event. Best value: complete all 10 flips OR reset after 6–8 (avoid the 20 & 25 token flips). Tokens carry over between events — skip an event to bank for a bigger haul.',
  strat:'Always choose Forgehammers or Governor Charm Materials as your Wish Reward. Avoid Gems/Speedups.',
  sources:[{t:'Mystic Divination Guide — Lootbar',u:'https://lootbar.gg/blog/en/kingshot-mystic-divination-event-guide-best-strategies.html'}]},
 {id:'grow-your-heroes',name:'Grow Your Heroes',emoji:'🌟',status:'soon',
- desc:'Hero ascension scoring event. Earn points by using Hero Shards to ascend heroes. 1-day event.',
+ desc:'Hero ascension scoring event (2 days). Earn points by using Hero Shards to ascend heroes.',
  tasks:[{a:'Rare Hero Shard',p:'15 pts'},{a:'Epic Hero Shard',p:'50 pts'},{a:'Mythic Hero Shard',p:'125 pts'}],
  tip:'Save shards before the event — especially Mythic. Mythic shards are 8× more efficient per shard than Rare.',
  strat:'Do not ascend heroes casually outside this event. Bank your shards and drop them here.',
@@ -236,8 +238,15 @@ const SAVE=[
 {name:'⚡ Speedups',segs:[{s:0,e:8,l:'✓ Working OT',bg:'#1a2744',fg:'#93c5fd',tip:'Build/research/training'},{s:8,e:47,l:'✓ Use freely',bg:'#14532d',fg:'#86efac',tip:'Good in KvK and SG too'}]},
 ];
 
+// ===== SERVER CONFIG (cookie-backed) =====
+function getCookie(n){const v=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');return v?decodeURIComponent(v.pop()):null;}
+function setCookie(n,v,days=365){const d=new Date();d.setTime(d.getTime()+days*86400000);document.cookie=n+'='+encodeURIComponent(v)+';expires='+d.toUTCString()+';path=/';}
+function getServerLaunchISO(){return getCookie('ks_server_launch')||null;}
+function setServerLaunch(iso){setCookie('ks_server_launch',iso,730);}
+function serverAgeDays(){const iso=getServerLaunchISO();if(!iso)return null;return Math.floor((Date.now()-new Date(iso).getTime())/86400000);}
+
 // ===== STATE =====
-let activeTab='now', selectedEvent=EVENTS[0].id, liveData=null, fetchedAt=null, calendarData=null;
+let activeTab='now', selectedEvent=EVENTS[0].id, liveData=null, fetchedAt=null, calendarData=null, timelineRules=null;
 
 // Calendar event name → {id in EVENTS, color}
 const CAL_MAP={
@@ -285,6 +294,37 @@ async function fetchCalendar(){
   return false;
 }
 
+async function fetchTimelineRules(){
+  try{
+    const r=await fetch('./data/server-timeline.json?_='+Date.now());
+    if(r.ok){ timelineRules=await r.json(); return true; }
+  }catch(e){}
+  return false;
+}
+
+// Returns set of calendar key fragments that are NOT yet unlocked for this server
+function lockedCalendarKeys(kvkDay){
+  const age=serverAgeDays();
+  const locked=new Set();
+  // Always omit clutter regardless of age
+  ['merchant empire','svs ','tundra','pack:','kvk day','kvk castle','castle battle'].forEach(k=>locked.add(k));
+  if(!timelineRules) return locked;
+  timelineRules.eventUnlocks.forEach(rule=>{
+    const key=rule.calendarKey;
+    if(rule.unlockAfterEvent==='kvk'){
+      // Locked until KvK has actually passed (kvkDay > 0 means KvK hasn't happened yet on this server if it's in the future)
+      // kvkDay is days until KvK; if kvkDay > 0 the event hasn't happened yet
+      if(kvkDay>0) locked.add(key);
+    } else if(rule.unlockAfterEvent==='truegold_complete'){
+      // Age of Truegold starts day 70; "completing" it takes additional time — lock while server age < 80
+      if(age===null||age<80) locked.add(key);
+    } else if(rule.unlockDayMin!==null&&(age===null||age<rule.unlockDayMin)){
+      locked.add(key);
+    }
+  });
+  return locked;
+}
+
 function fmtDate(iso){const d=new Date(iso),y=d.getFullYear(),ny=new Date().getFullYear();return d.toLocaleDateString('en-US',y!==ny?{month:'short',day:'numeric',year:'numeric'}:{month:'short',day:'numeric'});}
 function ageStr(d){if(!d)return '';const m=Math.round((Date.now()-d.getTime())/60000);if(m<2)return 'just now';if(m<60)return `${m}m ago`;return `${Math.round(m/60)}h ago`;}
 
@@ -297,10 +337,12 @@ function showTab(t){
   document.getElementById('tres').classList.toggle('active',t==='resources');
   document.getElementById('tev').classList.toggle('active',t==='events');
   document.getElementById('tgear').classList.toggle('active',t==='gear');
+  document.getElementById('tset').classList.toggle('active',t==='settings');
   if(t==='now') renderNowContent();
   if(t==='resources') renderResources();
   if(t==='events') renderEvents();
   if(t==='gear') renderGear();
+  if(t==='settings') renderSettings();
   closeDD();
 }
 function toggleDD(e){e.stopPropagation();document.getElementById('evdd').classList.toggle('open');}
@@ -396,7 +438,10 @@ function buildTimelineHTML(){
   function dayLabel(d){const dt=new Date(base);dt.setDate(dt.getDate()+d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
   const kvkDay=liveData&&liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
 
-  const OMIT=['alliance brawl','merchant empire','svs ','tundra','pack:','kvk day','kvk castle','castle battle'];
+  // Events not yet unlocked on this server (Gen 2, ~60 days old, pre-first-KvK):
+  // - Alliance Brawl: unlocks after first KvK
+  // - Officer Project: unlocks after completing Age of Truegold
+  const OMIT=lockedCalendarKeys(kvkDay);
 
   let ganttEvs=[];
   if(calendarData&&calendarData.events&&calendarData.events.length){
@@ -528,10 +573,50 @@ function renderGear(){
   el.innerHTML=h;
 }
 
+// ===== SETTINGS =====
+function renderSettings(){
+  const el=document.getElementById('panel-settings');
+  const iso=getServerLaunchISO();
+  const age=serverAgeDays();
+  // Convert stored UTC ISO to datetime-local value (which uses local time)
+  function isoToInput(s){if(!s)return '';const d=new Date(s);return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);}
+  const ageHtml=age!==null
+    ?`<div class="ag" style="margin-top:10px">Server age: <strong>${age} days</strong> · launched ${new Date(iso).toUTCString()}</div>`
+    :`<div class="ay" style="margin-top:10px">⚠️ No server launch date set — event unlock filtering is disabled.</div>`;
+  el.innerHTML=`<h2>⚙️ Settings</h2>
+  <div class="card">
+    <h3>Server Launch Date</h3>
+    <p style="color:var(--mx);font-size:13px;margin-bottom:12px">Used to calculate server age and filter events not yet unlocked. Times are in your local timezone — enter the launch time converted from UTC.</p>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <input type="datetime-local" id="launch-input" value="${isoToInput(iso)}" style="background:var(--s2);border:1px solid var(--bd);color:var(--tx);padding:6px 10px;border-radius:6px;font-size:14px">
+      <button onclick="saveLaunchDate()" style="background:var(--ac);border:none;color:#fff;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600">Save</button>
+      ${iso?`<button onclick="clearLaunchDate()" style="background:transparent;border:1px solid var(--bd);color:var(--mx);padding:7px 12px;border-radius:6px;cursor:pointer;font-size:13px">Clear</button>`:''}
+    </div>
+    ${ageHtml}
+    <div id="settings-msg" style="margin-top:8px;font-size:13px"></div>
+  </div>
+  <div class="card" style="margin-top:10px">
+    <h3>How server age is used</h3>
+    <p style="color:var(--mx);font-size:13px">Events like Alliance Brawl and Officer Project are filtered from the timeline until your server meets their unlock conditions. The full unlock schedule is in <code style="background:var(--s2);padding:2px 5px;border-radius:3px">data/server-timeline.json</code>.</p>
+  </div>`;
+}
+function saveLaunchDate(){
+  const v=document.getElementById('launch-input').value;
+  if(!v){document.getElementById('settings-msg').innerHTML='<span style="color:#fca5a5">Please enter a date.</span>';return;}
+  const iso=new Date(v).toISOString(); // converts local time → UTC ISO
+  setServerLaunch(iso);
+  document.getElementById('settings-msg').innerHTML='<span style="color:#86efac">✓ Saved.</span>';
+  setTimeout(()=>renderSettings(),800);
+}
+function clearLaunchDate(){
+  setCookie('ks_server_launch','',0);
+  renderSettings();
+}
+
 // ===== INIT =====
 buildDropdown();
 document.getElementById('panel-now').innerHTML=`<h2>🔴 Now</h2><div class="ab">⏳ Loading live event data…</div>`;
-Promise.all([fetchLive(), fetchCalendar()]).then(()=>{ showTab('now'); });
+Promise.all([fetchLive(), fetchCalendar(), fetchTimelineRules()]).then(()=>{ showTab('now'); });
 </script>
 </body>
 </html>
