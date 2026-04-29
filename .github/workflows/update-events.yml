@@ -28,11 +28,19 @@ jobs:
           print('Active events:', len(d['calendar']['activeEvents']))
           "
 
+      - name: Fetch and parse Google Calendar
+        run: |
+          CAL_ID="e6196c2703be23e87e027067c77f8990c4434a659a08fc9c3612f60c83b42c0e@group.calendar.google.com"
+          ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$CAL_ID'))")
+          curl -sf "https://calendar.google.com/calendar/ical/${ENCODED}/public/basic.ics" \
+            -o data/calendar.ics
+          python3 scripts/parse_calendar.py
+
       - name: Commit if data changed
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          git add data/events.json
+          git add data/events.json data/calendar.json
           git diff --staged --quiet \
             && echo "No change" \
             || git commit -m "chore: update events data [skip ci]" && git push
