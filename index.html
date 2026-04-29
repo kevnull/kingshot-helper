@@ -93,7 +93,6 @@ h2{font-size:18px;margin-bottom:12px}
 <body>
 <nav>
   <button class="nb active" id="tnow" onclick="showTab('now')">🔴 Now</button>
-  <button class="nb" id="ttl" onclick="showTab('timeline')">📅 Timeline</button>
   <button class="nb" id="tres" onclick="showTab('resources')">📦 Resources</button>
   <div class="ndw" id="ndw">
     <button class="nb" id="tev" onclick="toggleDD(event)">📋 Events ▾</button>
@@ -103,7 +102,6 @@ h2{font-size:18px;margin-bottom:12px}
 </nav>
 <div id="tt"><div id="ttT"></div><div id="ttD"></div><div id="ttB"></div></div>
 <div class="panel active" id="panel-now"></div>
-<div class="panel" id="panel-timeline"></div>
 <div class="panel" id="panel-resources"></div>
 <div class="panel" id="panel-events"></div>
 <div class="panel" id="panel-gear"></div>
@@ -117,6 +115,12 @@ const EVENTS=[
  tip:'Queue troop training ~9h before server reset to hit bonus windows.',
  strat:'Use regular speedups freely here. Do NOT burn premium resources.',
  sources:[{t:'Working Overtime — Kingshot Database',u:'https://kingshotdata.com/events/working-overtime-event/'}]},
+{id:'power-up',name:'Power Up',emoji:'⚡',status:'soon',
+ desc:'Personal development scoring event. Earn 1 point per Power gained through Construction, Research, or Training/promoting troops.',
+ tasks:[{a:'Construction power gains',p:'1/Power'},{a:'Research power gains',p:'1/Power'},{a:'Troop training/promoting',p:'1/Power'}],
+ tip:'Overlap with construction and research queues already running — free points. No premium item needed.',
+ strat:'Burn regular speedups on queued buildings and research. Troop training counts too.',
+ sources:[{t:'Power Up — KingShot Wiki',u:'https://kingshot.fandom.com/wiki/Power_Up'}]},
 {id:'call-of-the-sovereign',name:'Call of the Sovereign',emoji:'👑',status:'active',
  desc:'Governor development event. Score by spending Governor Energy and crafting/upgrading Governor Gear. Gen 2 server — Recruit Keys are Gen 3 only.',
  tasks:[{a:'Spend Governor Energy',p:'high'},{a:'Craft Governor Gear',p:'high'},{a:'Upgrade Governor Gear',p:'medium'},{a:'Use Mythril Shards',p:'medium'}],
@@ -209,7 +213,7 @@ const RESOURCES=[
 const RCOLS=['Working OT','Call of Sov','Hero Rally','Alliance Champ','Swordland','Alliance Mob','Stand of Arms','Desert Trial','KvK Prep','Str. Governor'];
 const RTIPS={g4:'✓ Use here — great value',g2:'✓ Use here — good value',r2:'↓ Avoid — better events ahead',r4:'✗ Do NOT use — save for KvK/SG',h0:'— Not applicable'};
 
-const DAYS=56;
+const DAYS=30;
 const SAVE=[
 {name:'🔨 Forgehammers',segs:[{s:0,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:'4,000 pts in KvK — wait for it'},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'4,000 pts each'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'4,000 pts in SG too'}]},
 {name:'🐾 Adv Taming',segs:[{s:0,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:'15k pts in KvK — never spend casually'},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'~15,000 pts. KvK first.'},{s:33,e:47,l:'✓ SG remainder',bg:'#2a0f5a',fg:'#c084fc',tip:'Leftover marks for SG Stage 3'}]},
@@ -278,12 +282,10 @@ function showTab(t){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-'+t).classList.add('active');
   document.getElementById('tnow').classList.toggle('active',t==='now');
-  document.getElementById('ttl').classList.toggle('active',t==='timeline');
   document.getElementById('tres').classList.toggle('active',t==='resources');
   document.getElementById('tev').classList.toggle('active',t==='events');
   document.getElementById('tgear').classList.toggle('active',t==='gear');
   if(t==='now') renderNowContent();
-  if(t==='timeline') renderTimeline();
   if(t==='resources') renderResources();
   if(t==='events') renderEvents();
   if(t==='gear') renderGear();
@@ -371,36 +373,25 @@ function renderNowContent(){
     });
   }
 
-  h+=`<div class="secl" style="margin-top:20px">Upcoming Major Events</div>`;
-  ['stand-of-arms','desert-trial','kvk','strongest-governor'].forEach(id=>{
-    const ev=EVENTS.find(e=>e.id===id); if(!ev)return;
-    const bm={soon:'bs',kvk:'bk',future:'bf'};
-    const bl={soon:'Soon',kvk:`~${liveData&&liveData.kvk?liveData.kvk.timeLeft.days:19} days`,future:'Future'};
-    h+=`<div class="card"><h3>${ev.emoji} <a class="evl" onclick="showEvent('${ev.id}')">${ev.name}</a><span class="badge ${bm[ev.status]||'bf'}">${bl[ev.status]||''}</span></h3><p style="color:var(--mx);font-size:13px">${ev.tip}</p></div>`;
-  });
+  h+=buildTimelineHTML();
   el.innerHTML=h;
 }
 
-// ===== TIMELINE =====
-function renderTimeline(){
-  const el=document.getElementById('panel-timeline');
+// ===== TIMELINE + RESOURCE SAVE (embedded in Now) =====
+function buildTimelineHTML(){
   const base=new Date(); base.setHours(0,0,0,0);
   function dayOf(iso){return Math.round((new Date(iso)-base)/86400000);}
   function dayLabel(d){const dt=new Date(base);dt.setDate(dt.getDate()+d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
   const kvkDay=liveData&&liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
 
-  // Events to omit from timeline (not on this server pre-first-KvK, or clutter)
   const OMIT=['alliance brawl','merchant empire','svs ','tundra','pack:','kvk day','kvk castle','castle battle'];
 
   let ganttEvs=[];
   if(calendarData&&calendarData.events&&calendarData.events.length){
-    // Use Google Calendar — accurate forward-looking schedule
     calendarData.events.forEach(ev=>{
       const nl=ev.name.toLowerCase();
       if(OMIT.some(o=>nl.includes(o))) return;
-      // Skip Strongest Governor before user's first KvK (those belong to other servers)
       if(nl.includes('strongest governor')&&dayOf(ev.start)<kvkDay) return;
-      // Collapse KvK matchmaking into the KvK block
       if(nl.includes('kvk matchmaking')) return;
       const s=Math.max(0,dayOf(ev.start)), e2=dayOf(ev.end);
       if(e2<0||s>DAYS) return;
@@ -408,11 +399,9 @@ function renderTimeline(){
       const cm=mk?CAL_MAP[mk]:null;
       ganttEvs.push({name:ev.name,s,e:e2,c:cm?cm.c:'#475569',id:cm&&cm.id?cm.id:'kvk'});
     });
-    // KvK block: matchmaking (-2 days) through end of war (+6 days)
     ganttEvs.push({name:'KvK Matchmaking',s:kvkDay-2,e:kvkDay,c:'#991b1b',id:'kvk'});
     ganttEvs.push({name:'Kingdom vs Kingdom',s:kvkDay,e:kvkDay+6,c:'#7f1d1d',id:'kvk'});
   } else {
-    // Fallback: project API week forward
     if(liveData&&liveData.calendar){
       const calEvs=(liveData.calendar.events||[]).filter(e=>e.type!=='PACK');
       calEvs.forEach(ev=>{
@@ -428,11 +417,10 @@ function renderTimeline(){
   }
 
   const seen=new Set(); ganttEvs=ganttEvs.filter(e=>{const k=e.name+e.s;if(seen.has(k))return false;seen.add(k);return true;}).sort((a,b)=>a.s-b.s);
-  const tickDays=[0,7,14,21,28,35,42,49];
-  let h=`<h2>📅 Timeline</h2>`;
+  const tickDays=[0,7,14,21,28];
   const src=calendarData?'Google Calendar':'estimated';
-  if(liveData||calendarData) h+=`<div class="ag" style="margin-bottom:12px">⚡ KvK in ~${kvkDay} days (${dayLabel(kvkDay)}) · schedule from ${src} · <strong style="color:#fde68a">Alliance Brawl unlocks after your first KvK</strong></div>`;
-  else h+=`<div class="ay" style="margin-bottom:12px">⚠️ Could not load data. KvK ~${kvkDay} days (estimated).</div>`;
+  let h=`<div class="secl" style="margin-top:20px">📅 30-Day Timeline <span style="font-size:11px;font-weight:400;color:var(--mx)">· ${src}</span></div>`;
+  if(liveData||calendarData) h+=`<div class="ag" style="margin-bottom:12px">⚡ KvK in ~${kvkDay} days (${dayLabel(kvkDay)}) · <strong style="color:#fde68a">Alliance Brawl unlocks after your first KvK</strong></div>`;
   h+=`<div class="gw"><div class="grow" style="margin-bottom:2px"><div class="glbl"></div><div class="gtrk" style="height:20px;background:transparent">`;
   tickDays.forEach(d=>h+=`<div style="position:absolute;left:${(d/DAYS)*100}%;font-size:10px;color:var(--mx);transform:translateX(-50%)">${dayLabel(d)}</div>`);
   h+=`</div></div>`;
@@ -442,7 +430,7 @@ function renderTimeline(){
     const nm=ev.name.replace(/'/g,"\\'");
     h+=`<div class="grow"><div class="glbl">${ev.name}</div><div class="gtrk"><div class="gbar" style="left:${l}%;width:${w}%;background:${ev.c};color:#fff" onmouseenter="showTip(event,'${nm}','${dayLabel(ev.s)} – ${dayLabel(ev.e)}','')" onmousemove="moveTip(event)" onmouseleave="hideTip()" onclick="showEvent('${ev.id}')">${ev.name}</div></div></div>`;
   });
-  h+=`</div><div class="secl" style="margin-top:20px">Resource Save Windows</div><div class="gw">`;
+  h+=`</div><div class="secl" style="margin-top:20px">💰 Resource Save Windows</div><div class="gw">`;
   SAVE.forEach(row=>{
     h+=`<div class="srow"><div class="slbl">${row.name}</div><div class="strk">`;
     row.segs.forEach(seg=>{
@@ -452,7 +440,7 @@ function renderTimeline(){
     h+=`</div></div>`;
   });
   h+=`</div>`;
-  el.innerHTML=h;
+  return h;
 }
 
 // ===== RESOURCES =====
