@@ -269,10 +269,62 @@ const CAL_MAP={
   'officer project':{id:'stand-of-arms',c:'#2563eb'},
 };
 
+// ===== EVENT LOOKUP HELPERS =====
+function getEvent(id){ return EVENTS.find(e=>e.id===id)||null; }
+function eventFromTitleKey(titleKey){ const id=KEY_MAP[titleKey]; return id?getEvent(id):null; }
+function eventFromCalName(name){
+  const nl=name.toLowerCase();
+  const mk=Object.keys(CAL_MAP).find(k=>nl.includes(k));
+  if(!mk) return {event:null,color:'#475569',id:'kvk'};
+  const cm=CAL_MAP[mk];
+  return {event:cm.id?getEvent(cm.id):null,color:cm.c,id:cm.id||'kvk'};
+}
+function isCalEventLocked(name,omit){ const nl=name.toLowerCase(); return Array.from(omit).some(o=>nl.includes(o)); }
+
+// Derives live status for an event id from calendarData / liveData rather than trusting the static field.
+// Returns: 'active' | 'soon' | 'kvk' | 'future'
+function deriveEventStatus(id){
+  if(id==='kvk') return 'kvk';
+  const now=new Date(), soon=new Date(now.getTime()+7*86400000);
+  // Check calendarData first (authoritative recurring schedule)
+  if(calendarData&&calendarData.events){
+    // Find cal key fragments that map to this event id
+    const calKeys=Object.keys(CAL_MAP).filter(k=>CAL_MAP[k].id===id);
+    // Also check by direct name match via eventFromCalName
+    for(const ev of calendarData.events){
+      const nl=ev.name.toLowerCase();
+      const matches=calKeys.length?calKeys.some(k=>nl.includes(k)):false;
+      if(!matches) continue;
+      const s=new Date(ev.start), e=new Date(ev.end);
+      if(s<=now&&now<e) return 'active';
+      if(s>now&&s<=soon) return 'soon';
+    }
+  }
+  // Fallback: check liveData active events
+  if(liveData&&liveData.calendar){
+    const mapped=Object.keys(KEY_MAP).find(k=>KEY_MAP[k]===id);
+    if(mapped){
+      const isActive=(liveData.calendar.activeEvents||[]).some(e=>e.titleKey===mapped);
+      if(isActive) return 'active';
+      const upcomingEv=(liveData.calendar.events||[]).find(e=>e.titleKey===mapped&&!e.isActive);
+      if(upcomingEv&&new Date(upcomingEv.startUtc)<=soon) return 'soon';
+    }
+  }
+  // Fall back to static status if no data available
+  const ev=getEvent(id);
+  return ev?ev.status:'future';
+}
+
 // ===== DATA FETCH =====
+function fetchWithTimeout(url, ms=5000){
+  const ctrl=new AbortController();
+  const tid=setTimeout(()=>ctrl.abort(),ms);
+  return fetch(url,{signal:ctrl.signal}).finally(()=>clearTimeout(tid));
+}
+
 async function fetchLive(){
   try{
-    const r=await fetch('./data/events.json?_='+Date.now());
+    const r=await fetchWithTimeout('./data/events.json?_='+Date.now());
     if(r.ok){
       liveData=await r.json();
       fetchedAt=liveData._fetchedAt?new Date(liveData._fetchedAt):new Date();
@@ -280,7 +332,7 @@ async function fetchLive(){
     }
   }catch(e){}
   try{
-    const r=await fetch('https://kingshot.net/api/events');
+    const r=await fetchWithTimeout('https://kingshot.net/api/events');
     if(r.ok){ liveData=await r.json(); fetchedAt=new Date(); return true; }
   }catch(e){}
   return false;
@@ -288,7 +340,7 @@ async function fetchLive(){
 
 async function fetchCalendar(){
   try{
-    const r=await fetch('./data/calendar.json?_='+Date.now());
+    const r=await fetchWithTimeout('./data/calendar.json?_='+Date.now());
     if(r.ok){ calendarData=await r.json(); return true; }
   }catch(e){}
   return false;
@@ -296,7 +348,7 @@ async function fetchCalendar(){
 
 async function fetchTimelineRules(){
   try{
-    const r=await fetch('./data/server-timeline.json?_='+Date.now());
+    const r=await fetchWithTimeout('./data/server-timeline.json?_='+Date.now());
     if(r.ok){ timelineRules=await r.json(); return true; }
   }catch(e){}
   return false;
@@ -392,14 +444,12 @@ function renderNowContent(){
     if(cal){
       const kvkDay=liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
       const omit=lockedCalendarKeys(kvkDay);
-      function isLocked(ev){const nl=ev.title.toLowerCase();return Array.from(omit).some(o=>nl.includes(o));}
-      const active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom')&&!isLocked(e));
-      const upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date()&&!isLocked(e));
+      const active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom')&&!isCalEventLocked(e.title,omit));
+      const upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date()&&!isCalEventLocked(e.title,omit));
       h+=`<div style="font-size:12px;color:var(--mx);margin-bottom:10px">Week ${cal.currentWeek} · ${cal.currentDay} · data via <a href="https://kingshot.net" target="_blank" style="color:var(--ac)">kingshot.net</a> (updated every 4h) · <strong style="color:#fde68a">⚠ universal calendar — verify against your server</strong></div>`;
       h+=`<div class="secl">Active Now</div><div class="ev-live">`;
       active.forEach(ev=>{
-        const mapped=KEY_MAP[ev.titleKey];
-        const myEv=mapped?EVENTS.find(e=>e.id===mapped):null;
+        const myEv=eventFromTitleKey(ev.titleKey);
         const tc=(ev.type||'').toLowerCase();
         h+=`<div class="ev-card type-${tc}">
           <h4>${ev.title}</h4>
@@ -411,8 +461,7 @@ function renderNowContent(){
       if(upcoming.length){
         h+=`<div class="secl">Coming This Week</div><div class="ev-live">`;
         upcoming.slice(0,6).forEach(ev=>{
-          const mapped=KEY_MAP[ev.titleKey];
-          const myEv=mapped?EVENTS.find(e=>e.id===mapped):null;
+          const myEv=eventFromTitleKey(ev.titleKey);
           const tc=(ev.type||'').toLowerCase();
           h+=`<div class="ev-card type-${tc}" style="opacity:.85">
             <h4>${ev.title}</h4>
@@ -449,15 +498,14 @@ function buildTimelineHTML(){
   let ganttEvs=[];
   if(calendarData&&calendarData.events&&calendarData.events.length){
     calendarData.events.forEach(ev=>{
+      if(isCalEventLocked(ev.name,OMIT)) return;
       const nl=ev.name.toLowerCase();
-      if(OMIT.some(o=>nl.includes(o))) return;
       if(nl.includes('strongest governor')&&dayOf(ev.start)<kvkDay) return;
       if(nl.includes('kvk matchmaking')) return;
       const s=Math.max(0,dayOf(ev.start)), e2=dayOf(ev.end);
       if(e2<0||s>DAYS) return;
-      const mk=Object.keys(CAL_MAP).find(k=>nl.includes(k));
-      const cm=mk?CAL_MAP[mk]:null;
-      ganttEvs.push({name:ev.name,s,e:e2,c:cm?cm.c:'#475569',id:cm&&cm.id?cm.id:'kvk'});
+      const {color,id}=eventFromCalName(ev.name);
+      ganttEvs.push({name:ev.name,s,e:e2,c:color,id});
     });
     ganttEvs.push({name:'KvK Matchmaking',s:kvkDay-2,e:kvkDay,c:'#991b1b',id:'kvk'});
     ganttEvs.push({name:'Kingdom vs Kingdom',s:kvkDay,e:kvkDay+6,c:'#7f1d1d',id:'kvk'});
@@ -467,8 +515,8 @@ function buildTimelineHTML(){
       calEvs.forEach(ev=>{
         const s=Math.max(0,dayOf(ev.startUtc)),e2=dayOf(ev.endUtc)+1;
         if(e2<0||s>DAYS)return;
-        const mapped=KEY_MAP[ev.titleKey];
-        ganttEvs.push({name:ev.title,s,e:e2,c:TYPE_COLORS[ev.type]||'#475569',id:mapped||ev.titleKey});
+        const myEv=eventFromTitleKey(ev.titleKey);
+        ganttEvs.push({name:ev.title,s,e:e2,c:TYPE_COLORS[ev.type]||'#475569',id:myEv?myEv.id:ev.titleKey});
       });
     }
     ganttEvs.push({name:'KvK Prep Phase',s:kvkDay-7,e:kvkDay,c:'#991b1b',id:'kvk'});
@@ -531,24 +579,25 @@ function renderEvents(){
   const groups=[{label:'Active Now',s:'active'},{label:'Starts Soon',s:'soon'},{label:'KvK',s:'kvk'},{label:'Future',s:'future'}];
   let h=`<div class="evlo"><div class="evsb">`;
   groups.forEach(g=>{
-    const evs=EVENTS.filter(e=>e.status===g.s);
+    const evs=EVENTS.filter(e=>deriveEventStatus(e.id)===g.s);
     if(!evs.length)return;
     h+=`<div class="evgl">${g.label}</div>`;
     evs.forEach(e=>h+=`<button class="evbtn${e.id===selectedEvent?' sel':''}" id="ebtn-${e.id}" onclick="selectEvent('${e.id}')">${e.emoji} ${e.name}</button>`);
   });
-  h+=`</div><div class="evdt" id="evdetail">${renderEventDetail(EVENTS.find(e=>e.id===selectedEvent))}</div></div>`;
+  h+=`</div><div class="evdt" id="evdetail">${renderEventDetail(getEvent(selectedEvent))}</div></div>`;
   el.innerHTML=h;
 }
 function selectEvent(id){
   selectedEvent=id;
   document.querySelectorAll('.evbtn').forEach(b=>b.classList.remove('sel'));
   const btn=document.getElementById('ebtn-'+id); if(btn)btn.classList.add('sel');
-  const detail=document.getElementById('evdetail'); if(detail)detail.innerHTML=renderEventDetail(EVENTS.find(e=>e.id===id));
+  const detail=document.getElementById('evdetail'); if(detail)detail.innerHTML=renderEventDetail(getEvent(id));
 }
 function renderEventDetail(ev){
   if(!ev)return '';
   const bm={active:'ba',soon:'bs',kvk:'bk',future:'bf'},bl={active:'Active',soon:'Soon',kvk:'KvK',future:'Future'};
-  let h=`<h2>${ev.emoji} ${ev.name} <span class="badge ${bm[ev.status]}">${bl[ev.status]}</span></h2>`;
+  const st=deriveEventStatus(ev.id);
+  let h=`<h2>${ev.emoji} ${ev.name} <span class="badge ${bm[st]||'bf'}">${bl[st]||'Future'}</span></h2>`;
   h+=`<p style="color:var(--mx);font-size:13px;margin-bottom:10px">${ev.desc}</p>`;
   if(ev.tip) h+=`<div class="ab" style="margin-bottom:10px">💡 ${ev.tip}</div>`;
   if(ev.strat) h+=`<div class="ay" style="margin-bottom:10px">🎯 ${ev.strat}</div>`;
