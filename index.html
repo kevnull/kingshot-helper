@@ -116,11 +116,23 @@ const EVENTS=[
  strat:'Use regular speedups freely here. Do NOT burn premium resources.',
  sources:[{t:'Working Overtime — Kingshot Database',u:'https://kingshotdata.com/events/working-overtime-event/'}]},
 {id:'power-up',name:'Power Up',emoji:'⚡',status:'soon',
- desc:'Personal development scoring event. Earn 1 point per Power gained through Construction, Research, or Training/promoting troops.',
+ desc:'Personal development event. Earn 1 point per Power gained through Construction, Research, or Training/promoting troops.',
  tasks:[{a:'Construction power gains',p:'1/Power'},{a:'Research power gains',p:'1/Power'},{a:'Troop training/promoting',p:'1/Power'}],
- tip:'Overlap with construction and research queues already running — free points. No premium item needed.',
+ tip:'Free points — overlap with your existing build/research queues. No premium items needed.',
  strat:'Burn regular speedups on queued buildings and research. Troop training counts too.',
  sources:[{t:'Power Up — KingShot Wiki',u:'https://kingshot.fandom.com/wiki/Power_Up'}]},
+{id:'mystic-divination',name:'Mystic Divination',emoji:'🔮',status:'soon',
+ desc:'Card-flip event. Choose a Wish Reward (Forgehammers, Charm Materials, Gems, Speedups, or Hero XP), then flip cards using Fortune Tokens until you find it. 2-day event, repeats every ~4 weeks.',
+ tasks:[{a:'Flip card (1st)',p:'1 token'},{a:'Flip card (2nd–5th)',p:'2–6 tokens'},{a:'Flip card (6th–10th)',p:'8–25 tokens'},{a:'Full 10-card board',p:'96 tokens total'}],
+ tip:'F2P earns ~46 tokens per event. Best value: complete all 10 flips OR reset after 6–8 (avoid the 20 & 25 token flips). Tokens carry over between events — skip an event to bank for a bigger haul.',
+ strat:'Always choose Forgehammers or Governor Charm Materials as your Wish Reward. Avoid Gems/Speedups.',
+ sources:[{t:'Mystic Divination Guide — Lootbar',u:'https://lootbar.gg/blog/en/kingshot-mystic-divination-event-guide-best-strategies.html'}]},
+{id:'grow-your-heroes',name:'Grow Your Heroes',emoji:'🌟',status:'soon',
+ desc:'Hero ascension scoring event. Earn points by using Hero Shards to ascend heroes. 1-day event.',
+ tasks:[{a:'Rare Hero Shard',p:'15 pts'},{a:'Epic Hero Shard',p:'50 pts'},{a:'Mythic Hero Shard',p:'125 pts'}],
+ tip:'Save shards before the event — especially Mythic. Mythic shards are 8× more efficient per shard than Rare.',
+ strat:'Do not ascend heroes casually outside this event. Bank your shards and drop them here.',
+ sources:[{t:'Grow Your Heroes — Kingshot Database',u:'https://kingshotdata.com/events/grow-your-heroes-event/'}]},
 {id:'call-of-the-sovereign',name:'Call of the Sovereign',emoji:'👑',status:'active',
  desc:'Governor development event. Score by spending Governor Energy and crafting/upgrading Governor Gear. Gen 2 server — Recruit Keys are Gen 3 only.',
  tasks:[{a:'Spend Governor Energy',p:'high'},{a:'Craft Governor Gear',p:'high'},{a:'Upgrade Governor Gear',p:'medium'},{a:'Use Mythril Shards',p:'medium'}],
@@ -235,7 +247,7 @@ const CAL_MAP={
   "desert trial":{id:'desert-trial',c:'#15803d'},
   "champion's way":{id:'desert-trial',c:'#15803d'},
   'alliance mobilization':{id:'alliance-mobilization',c:'#7c3aed'},
-  'mystic divination':{id:null,c:'#db2777'},
+  'mystic divination':{id:'mystic-divination',c:'#db2777'},
   'hall of heroes':{id:null,c:'#0891b2'},
   'vikings vengeance':{id:null,c:'#b45309'},
   "eternity's reach":{id:null,c:'#6366f1'},
@@ -273,7 +285,7 @@ async function fetchCalendar(){
   return false;
 }
 
-function fmtDate(iso){return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function fmtDate(iso){const d=new Date(iso),y=d.getFullYear(),ny=new Date().getFullYear();return d.toLocaleDateString('en-US',y!==ny?{month:'short',day:'numeric',year:'numeric'}:{month:'short',day:'numeric'});}
 function ageStr(d){if(!d)return '';const m=Math.round((Date.now()-d.getTime())/60000);if(m<2)return 'just now';if(m<60)return `${m}m ago`;return `${Math.round(m/60)}h ago`;}
 
 // ===== NAV =====
