@@ -147,7 +147,7 @@ const EVENTS=[
  tip:'Low resource cost. Participate whenever available.',
  strat:'Passive points — no premium resources needed.',
  sources:[{t:'Alliance Mobilization — Kingshot.net',u:'https://kingshot.net/events/alliance-mobilization'}]},
-{id:'alliance-brawl',name:'Alliance Brawl',emoji:'🥊',status:'active',
+{id:'alliance-brawl',name:'Alliance Brawl',emoji:'🥊',status:'future',
  desc:'Alliance vs Alliance event. Coordinated attacks and defense for alliance-wide scoring.',
  tasks:[{a:'Alliance rally attacks',p:'high'},{a:'Defend territory',p:'high'},{a:'Individual kills',p:'medium'}],
  tip:'Chip-hunting (hitting flagged small targets) accumulates fast.',
@@ -311,7 +311,7 @@ function renderNowContent(){
     if(cal){
       const active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom'));
       const upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date());
-      h+=`<div style="font-size:12px;color:var(--mx);margin-bottom:10px">Week ${cal.currentWeek} · ${cal.currentDay} · data via <a href="https://kingshot.net" target="_blank" style="color:var(--ac)">kingshot.net</a> (updated every 4h by GitHub Actions)</div>`;
+      h+=`<div style="font-size:12px;color:var(--mx);margin-bottom:10px">Week ${cal.currentWeek} · ${cal.currentDay} · data via <a href="https://kingshot.net" target="_blank" style="color:var(--ac)">kingshot.net</a> (updated every 4h) · <strong style="color:#fde68a">⚠ universal calendar — verify against your server</strong></div>`;
       h+=`<div class="secl">Active Now</div><div class="ev-live">`;
       active.forEach(ev=>{
         const mapped=KEY_MAP[ev.titleKey];
@@ -365,20 +365,35 @@ function renderTimeline(){
   const kvkDay=liveData&&liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
   let ganttEvs=[];
   if(liveData&&liveData.calendar){
-    (liveData.calendar.events||[]).filter(e=>e.type!=='PACK').forEach(ev=>{
+    const calEvs=(liveData.calendar.events||[]).filter(e=>e.type!=='PACK');
+    // Add this week's events (confirmed from API)
+    calEvs.forEach(ev=>{
       const s=Math.max(0,dayOf(ev.startUtc)), e2=dayOf(ev.endUtc)+1;
       if(e2<0||s>DAYS)return;
       const mapped=KEY_MAP[ev.titleKey];
-      ganttEvs.push({name:ev.title,s,e:e2,c:TYPE_COLORS[ev.type]||'#475569',id:mapped||ev.titleKey});
+      ganttEvs.push({name:ev.title,s,e:e2,c:TYPE_COLORS[ev.type]||'#475569',id:mapped||ev.titleKey,proj:false});
     });
+    // Project this week's pattern into future weeks until KvK prep starts
+    // API only gives current week — project forward as estimated repeat cycles
+    const weeksToProject=Math.ceil(kvkDay/7);
+    for(let w=1;w<=weeksToProject;w++){
+      const offset=w*7;
+      calEvs.forEach(ev=>{
+        const s=dayOf(ev.startUtc)+offset;
+        const e2=dayOf(ev.endUtc)+1+offset;
+        if(e2<0||s>DAYS||s>=kvkDay-7)return; // stop before KvK prep
+        const mapped=KEY_MAP[ev.titleKey];
+        ganttEvs.push({name:ev.title,s:Math.max(0,s),e:e2,c:TYPE_COLORS[ev.type]||'#475569',id:mapped||ev.titleKey,proj:true});
+      });
+    }
   }
-  ganttEvs.push({name:'KvK Prep Phase',s:kvkDay-7,e:kvkDay,c:'#991b1b',id:'kvk'});
-  ganttEvs.push({name:'Kingdom vs Kingdom',s:kvkDay,e:kvkDay+7,c:'#7f1d1d',id:'kvk'});
-  ganttEvs.push({name:'Strongest Governor',s:kvkDay+14,e:kvkDay+28,c:'#92400e',id:'strongest-governor'});
-  const seen=new Set(); ganttEvs=ganttEvs.filter(e=>{const k=e.name+e.s;if(seen.has(k))return false;seen.add(k);return true;}).sort((a,b)=>a.s-b.s);
+  ganttEvs.push({name:'KvK Prep Phase',s:kvkDay-7,e:kvkDay,c:'#991b1b',id:'kvk',proj:false});
+  ganttEvs.push({name:'Kingdom vs Kingdom',s:kvkDay,e:kvkDay+7,c:'#7f1d1d',id:'kvk',proj:false});
+  ganttEvs.push({name:'Strongest Governor',s:kvkDay+14,e:kvkDay+28,c:'#92400e',id:'strongest-governor',proj:false});
+  const seen=new Set(); ganttEvs=ganttEvs.filter(e=>{const k=e.name+e.s+(e.proj?'p':'');if(seen.has(k))return false;seen.add(k);return true;}).sort((a,b)=>a.s-b.s);
   const tickDays=[0,7,14,21,28,35,42,49];
   let h=`<h2>📅 Timeline</h2>`;
-  if(liveData) h+=`<div class="ag" style="margin-bottom:12px">⚡ Live — KvK in ~${kvkDay} days (${dayLabel(kvkDay)}). Updated every 4h.</div>`;
+  if(liveData) h+=`<div class="ag" style="margin-bottom:12px">⚡ Live — KvK in ~${kvkDay} days (${dayLabel(kvkDay)}). Updated every 4h. Faded bars = projected (same weekly cycle).</div>`;
   else h+=`<div class="ay" style="margin-bottom:12px">⚠️ Using estimated dates. KvK ~${kvkDay} days.</div>`;
   h+=`<div class="gw"><div class="grow" style="margin-bottom:2px"><div class="glbl"></div><div class="gtrk" style="height:20px;background:transparent">`;
   tickDays.forEach(d=>h+=`<div style="position:absolute;left:${(d/DAYS)*100}%;font-size:10px;color:var(--mx);transform:translateX(-50%)">${dayLabel(d)}</div>`);
@@ -386,7 +401,10 @@ function renderTimeline(){
   ganttEvs.forEach(ev=>{
     const l=Math.max(0,(ev.s/DAYS)*100), w=Math.min(100-l,((ev.e-ev.s)/DAYS)*100);
     if(w<=0)return;
-    h+=`<div class="grow"><div class="glbl">${ev.name}</div><div class="gtrk"><div class="gbar" style="left:${l}%;width:${w}%;background:${ev.c};color:#fff" onmouseenter="showTip(event,'${ev.name.replace(/'/g,"\\'")}','${dayLabel(ev.s)} – ${dayLabel(ev.e)}','')" onmousemove="moveTip(event)" onmouseleave="hideTip()" onclick="showEvent('${ev.id}')">${ev.name}</div></div></div>`;
+    const op=ev.proj?'opacity:0.4;':'';
+    const nm=ev.name.replace(/'/g,"\\'");
+    const tip=ev.proj?'Projected (same weekly cycle)':'';
+    h+=`<div class="grow"><div class="glbl">${ev.proj?'~':''}${ev.name}</div><div class="gtrk"><div class="gbar" style="left:${l}%;width:${w}%;background:${ev.c};color:#fff;${op}" onmouseenter="showTip(event,'${nm}','${dayLabel(ev.s)} – ${dayLabel(ev.e)}','${tip}')" onmousemove="moveTip(event)" onmouseleave="hideTip()" onclick="showEvent('${ev.id}')">${ev.name}</div></div></div>`;
   });
   h+=`</div><div class="secl" style="margin-top:20px">Resource Save Windows</div><div class="gw">`;
   SAVE.forEach(row=>{
