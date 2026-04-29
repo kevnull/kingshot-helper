@@ -40,6 +40,13 @@
       "notes": "Unlocks after completing Age of Truegold. Age of Truegold starts at day 70; Officer Project requires finishing it, so effective unlock is somewhat after day 70."
     },
     {
+      "calendarKey": "armament competition",
+      "name": "Armament Competition",
+      "unlockAfterEvent": "truegold_complete",
+      "unlockDayMin": 70,
+      "notes": "Same unlock condition as Officer Project — requires completing Age of Truegold. Also appears in some calendars as Stand of Arms."
+    },
+    {
       "calendarKey": "strongest governor",
       "name": "Strongest Governor",
       "unlockAfterEvent": "kvk",
