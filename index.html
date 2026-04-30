@@ -282,6 +282,25 @@ function eventFromCalName(name){
 }
 function isCalEventLocked(name,omit){ const nl=name.toLowerCase(); return Array.from(omit).some(o=>nl.includes(o)); }
 
+// Derive Active Now / Coming This Week from calendarData (Google Calendar = server-specific truth).
+// Returns null if calendarData isn't loaded so caller can fall back to liveData.calendar.
+function liveEventsFromCalendar(omit){
+  if(!(calendarData&&calendarData.events&&calendarData.events.length)) return null;
+  const now=new Date(), soon=new Date(now.getTime()+7*86400000);
+  const active=[], upcoming=[];
+  for(const ev of calendarData.events){
+    if(isCalEventLocked(ev.name,omit)) continue;
+    const s=new Date(ev.start), e=new Date(ev.end); // end is exclusive (iCal all-day convention)
+    const {event,color,id}=eventFromCalName(ev.name);
+    const norm={name:ev.name,s,e,color,id,myEv:event};
+    if(s<=now&&now<e) active.push(norm);
+    else if(s>now&&s<=soon) upcoming.push(norm);
+  }
+  active.sort((a,b)=>a.e-b.e);
+  upcoming.sort((a,b)=>a.s-b.s);
+  return {active,upcoming};
+}
+
 // Derives live status for an event id from calendarData / liveData rather than trusting the static field.
 // Returns: 'active' | 'soon' | 'kvk' | 'future'
 function deriveEventStatus(id){
@@ -443,31 +462,37 @@ function renderNowContent(){
     }
     const cal=liveData.calendar;
     if(cal){
-      const kvkDay=liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
+      const kvkDay=liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400000):19;
       const omit=lockedCalendarKeys(kvkDay);
-      const active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom')&&!isCalEventLocked(e.title,omit));
-      const upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date()&&!isCalEventLocked(e.title,omit));
-      h+=`<div style="font-size:12px;color:var(--mx);margin-bottom:10px">Week ${cal.currentWeek} · ${cal.currentDay} · data via <a href="https://kingshot.net" target="_blank" style="color:var(--ac)">kingshot.net</a> (updated every 4h) · <strong style="color:#fde68a">⚠ universal calendar — verify against your server</strong></div>`;
+      const fromCal=liveEventsFromCalendar(omit);
+      const src=fromCal?'Google Calendar':'kingshot.net (universal cycle)';
+      h+=`<div style="font-size:12px;color:var(--mx);margin-bottom:10px">Week ${cal.currentWeek} · ${cal.currentDay} · data via ${src} · <strong style="color:#fde68a">⚠ verify against your server</strong></div>`;
+      let active, upcoming;
+      if(fromCal){
+        active=fromCal.active; upcoming=fromCal.upcoming;
+      } else {
+        active=(cal.activeEvents||[]).filter(e=>!e.titleKey.toLowerCase().includes('custom')&&!isCalEventLocked(e.title,omit))
+          .map(e=>{const myEv=eventFromTitleKey(e.titleKey);return{name:e.title,s:new Date(e.startUtc),e:new Date(e.endUtc),color:TYPE_COLORS[e.type]||'#94a3b8',id:myEv?myEv.id:null,myEv};});
+        upcoming=(cal.events||[]).filter(e=>!e.isActive&&e.type!=='PACK'&&new Date(e.startUtc)>new Date()&&!isCalEventLocked(e.title,omit))
+          .slice(0,6).map(e=>{const myEv=eventFromTitleKey(e.titleKey);return{name:e.title,s:new Date(e.startUtc),e:new Date(e.endUtc),color:TYPE_COLORS[e.type]||'#94a3b8',id:myEv?myEv.id:null,myEv};});
+      }
+      const lastDay=d=>new Date(d.getTime()-86400000); // end is exclusive — show inclusive last day
       h+=`<div class="secl">Active Now</div><div class="ev-live">`;
       active.forEach(ev=>{
-        const myEv=eventFromTitleKey(ev.titleKey);
-        const tc=(ev.type||'').toLowerCase();
-        h+=`<div class="ev-card type-${tc}">
-          <h4>${ev.title}</h4>
-          <div class="dates">Ends ${fmtDate(ev.endUtc)} · <span style="color:${TYPE_COLORS[ev.type]||'#94a3b8'}">${TYPE_LABELS[ev.type]||ev.type}</span></div>
-          ${myEv?`<div class="strat-link" onclick="showEvent('${myEv.id}')">📋 Strategy & scoring →</div>`:''}
+        h+=`<div class="ev-card" style="border-left:3px solid ${ev.color}">
+          <h4>${ev.name}</h4>
+          <div class="dates">Ends ${fmtDate(lastDay(ev.e))}</div>
+          ${ev.myEv?`<div class="strat-link" onclick="showEvent('${ev.myEv.id}')">📋 Strategy & scoring →</div>`:''}
         </div>`;
       });
       h+=`</div>`;
       if(upcoming.length){
         h+=`<div class="secl">Coming This Week</div><div class="ev-live">`;
         upcoming.slice(0,6).forEach(ev=>{
-          const myEv=eventFromTitleKey(ev.titleKey);
-          const tc=(ev.type||'').toLowerCase();
-          h+=`<div class="ev-card type-${tc}" style="opacity:.85">
-            <h4>${ev.title}</h4>
-            <div class="dates">${fmtDate(ev.startUtc)} → ${fmtDate(ev.endUtc)} · <span style="color:${TYPE_COLORS[ev.type]||'#94a3b8'}">${TYPE_LABELS[ev.type]||ev.type}</span></div>
-            ${myEv?`<div class="strat-link" onclick="showEvent('${myEv.id}')">📋 Strategy & scoring →</div>`:''}
+          h+=`<div class="ev-card" style="border-left:3px solid ${ev.color};opacity:.85">
+            <h4>${ev.name}</h4>
+            <div class="dates">${fmtDate(ev.s)} → ${fmtDate(lastDay(ev.e))}</div>
+            ${ev.myEv?`<div class="strat-link" onclick="showEvent('${ev.myEv.id}')">📋 Strategy & scoring →</div>`:''}
           </div>`;
         });
         h+=`</div>`;
@@ -489,7 +514,7 @@ function buildTimelineHTML(){
   const base=new Date(); base.setHours(0,0,0,0);
   function dayOf(iso){return Math.round((new Date(iso)-base)/86400000);}
   function dayLabel(d){const dt=new Date(base);dt.setDate(dt.getDate()+d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
-  const kvkDay=liveData&&liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400):19;
+  const kvkDay=liveData&&liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400000):19;
 
   // Events not yet unlocked on this server (Gen 2, ~60 days old, pre-first-KvK):
   // - Alliance Brawl: unlocks after first KvK
