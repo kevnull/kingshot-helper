@@ -75,12 +75,11 @@ h2{font-size:18px;margin-bottom:12px}
 .kvk-l{font-size:10px;color:#fca5a5;text-transform:uppercase}
 .ev-live{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;margin-bottom:8px}
 .ev-card{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:12px 14px}
-.ev-card.type-battle{border-left:3px solid #dc2626}
-.ev-card.type-competition{border-left:3px solid #2563eb}
-.ev-card.type-special{border-left:3px solid #d97706}
 .ev-card h4{font-size:13px;font-weight:600;margin-bottom:3px}
 .ev-card .dates{font-size:11px;color:var(--mx)}
-.ev-card .strat-link{font-size:11px;color:var(--ac);cursor:pointer;border-bottom:1px dotted var(--ac);margin-top:4px;display:inline-block}
+.ev-card .pills{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
+.ev-card .pill{font-size:10px;padding:2px 7px;border-radius:10px;background:var(--s2);color:var(--mx);border:1px solid var(--bd);white-space:nowrap}
+.ev-card .strat-link{font-size:11px;color:var(--ac);cursor:pointer;border-bottom:1px dotted var(--ac);margin-top:6px;display:inline-block}
 .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-right:5px;animation:pulse 2s infinite}
 .stale-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f59e0b;margin-right:5px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -235,7 +234,9 @@ const SAVE=[
 {name:'🔧 Widgets',segs:[{s:0,e:8,l:'↓ Stand OK',bg:'#1a3a2a',fg:'#6ee7b7',tip:'8k pts — same value as KvK, ok to use'},{s:8,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'8,000 pts'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'8,000 pts'}]},
 {name:'🎰 Hero Roulette',segs:[{s:0,e:3,l:'✓ Hero Rally',bg:'#0c4a6e',fg:'#7dd3fc',tip:'Good value here'},{s:3,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:'Save packs for KvK'},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'8,000 pts/10-spin'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'8,000 pts'}]},
 {name:'👑 Gov Energy',segs:[{s:0,e:14,l:'✓ Call of Sov',bg:'#4c1d95',fg:'#ddd6fe',tip:'Spend during CoS window'},{s:14,e:47,l:'Accumulate',bg:'#1e293b',fg:'#6b7280',tip:'Save for next CoS cycle'}]},
-{name:'⚡ Speedups',segs:[{s:0,e:8,l:'✓ Working OT',bg:'#1a2744',fg:'#93c5fd',tip:'Build/research/training'},{s:8,e:47,l:'✓ Use freely',bg:'#14532d',fg:'#86efac',tip:'Good in KvK and SG too'}]},
+{name:'⚡ Speedups',segs:[{s:0,e:8,l:'✓ Working OT',bg:'#1a2744',fg:'#93c5fd',tip:'Build/research/training — great here'},{s:8,e:19,l:'SAVE',bg:'#1e293b',fg:'#60a5fa',tip:"Most events here don't reward speedups. Stand of Arms is OK if it lands."},{s:19,e:33,l:'✓ KvK',bg:'#7f1d1d',fg:'#fca5a5',tip:'30 pts per 1M min in KvK Prep'},{s:33,e:47,l:'✓ SG',bg:'#78350f',fg:'#fde68a',tip:'Same value as KvK'}]},
+{name:'🦸 Mythic Shards',segs:[{s:0,e:47,l:'SAVE — drop only in Grow Your Heroes',bg:'#1e293b',fg:'#60a5fa',tip:'125 pts/Mythic shard in GYH (vs 15 for Rare) — 8× more efficient. Never ascend casually.'}]},
+{name:'💎 Charm Materials',segs:[{s:0,e:47,l:'Save — spend on Stand of Arms milestones',bg:'#1e293b',fg:'#60a5fa',tip:'Best Mystic Divination Wish reward. Use to hit Stand of Arms stages so Forgehammers stay banked for KvK.'}]},
 ];
 
 // ===== SERVER CONFIG (cookie-backed) =====
@@ -281,6 +282,17 @@ function eventFromCalName(name){
   return {event:cm.id?getEvent(cm.id):null,color:cm.c,id:cm.id||'kvk'};
 }
 function isCalEventLocked(name,omit){ const nl=name.toLowerCase(); return Array.from(omit).some(o=>nl.includes(o)); }
+
+// Renders up to N task labels from a linked EVENTS entry as small pills.
+// Strips the parenthetical (e.g. "Forgehammers (4,000 each)" → "Forgehammers") to keep them short.
+function eventPills(myEv,limit=3){
+  if(!myEv||!myEv.tasks||!myEv.tasks.length) return '';
+  const labels=myEv.tasks.slice(0,limit).map(t=>{
+    const a=(t.a||'').split('(')[0].trim();
+    return t.p?`<span class="pill" title="${t.p.replace(/"/g,'&quot;')}">${a}</span>`:`<span class="pill">${a}</span>`;
+  });
+  return `<div class="pills">${labels.join('')}</div>`;
+}
 
 // Derive Active Now / Coming This Week from calendarData (Google Calendar = server-specific truth).
 // Returns null if calendarData isn't loaded so caller can fall back to liveData.calendar.
@@ -482,6 +494,7 @@ function renderNowContent(){
         h+=`<div class="ev-card" style="border-left:3px solid ${ev.color}">
           <h4>${ev.name}</h4>
           <div class="dates">Ends ${fmtDate(lastDay(ev.e))}</div>
+          ${eventPills(ev.myEv)}
           ${ev.myEv?`<div class="strat-link" onclick="showEvent('${ev.myEv.id}')">📋 Strategy & scoring →</div>`:''}
         </div>`;
       });
@@ -492,7 +505,8 @@ function renderNowContent(){
           h+=`<div class="ev-card" style="border-left:3px solid ${ev.color};opacity:.85">
             <h4>${ev.name}</h4>
             <div class="dates">${fmtDate(ev.s)} → ${fmtDate(lastDay(ev.e))}</div>
-            ${ev.myEv?`<div class="strat-link" onclick="showEvent('${ev.myEv.id}')">📋 Strategy & scoring →</div>`:''}
+            ${eventPills(ev.myEv)}
+          ${ev.myEv?`<div class="strat-link" onclick="showEvent('${ev.myEv.id}')">📋 Strategy & scoring →</div>`:''}
           </div>`;
         });
         h+=`</div>`;
