@@ -302,7 +302,7 @@ function liveEventsFromCalendar(omit){
   const active=[], upcoming=[];
   for(const ev of calendarData.events){
     if(isCalEventLocked(ev.name,omit)) continue;
-    const s=new Date(ev.start), e=new Date(ev.end); // end is exclusive (iCal all-day convention)
+    const s=parseDate(ev.start), e=parseDate(ev.end); // end is exclusive (iCal all-day convention)
     const {event,color,id}=eventFromCalName(ev.name);
     const norm={name:ev.name,s,e,color,id,myEv:event};
     if(s<=now&&now<e) active.push(norm);
@@ -327,7 +327,7 @@ function deriveEventStatus(id){
       const nl=ev.name.toLowerCase();
       const matches=calKeys.length?calKeys.some(k=>nl.includes(k)):false;
       if(!matches) continue;
-      const s=new Date(ev.start), e=new Date(ev.end);
+      const s=parseDate(ev.start), e=parseDate(ev.end);
       if(s<=now&&now<e) return 'active';
       if(s>now&&s<=soon) return 'soon';
     }
@@ -378,6 +378,30 @@ async function fetchCalendar(){
   return false;
 }
 
+// Loads server-specific manual/projected events and merges them into calendarData.events.
+// Calendar feed is incomplete for this server (missing some events, occasional date drift),
+// so observed-events.json fills the gaps. De-dupes on name+start to avoid double-render.
+async function fetchObservedEvents(){
+  try{
+    const r=await fetchWithTimeout('./data/observed-events.json?_='+Date.now());
+    if(!r.ok) return false;
+    const obs=await r.json();
+    if(!obs.events||!obs.events.length) return false;
+    if(!calendarData) calendarData={events:[]};
+    if(!calendarData.events) calendarData.events=[];
+    const seen=new Set(calendarData.events.map(e=>`${e.name.toLowerCase()}|${e.start}`));
+    for(const ev of obs.events){
+      const k=`${ev.name.toLowerCase()}|${ev.start}`;
+      if(seen.has(k)) continue;
+      calendarData.events.push({name:ev.name,start:ev.start,end:ev.end});
+      seen.add(k);
+    }
+    calendarData.events.sort((a,b)=>a.start.localeCompare(b.start));
+    return true;
+  }catch(e){}
+  return false;
+}
+
 async function fetchTimelineRules(){
   try{
     const r=await fetchWithTimeout('./data/server-timeline.json?_='+Date.now());
@@ -409,7 +433,17 @@ function lockedCalendarKeys(kvkDay){
   return locked;
 }
 
-function fmtDate(iso){const d=new Date(iso),y=d.getFullYear(),ny=new Date().getFullYear();return d.toLocaleDateString('en-US',y!==ny?{month:'short',day:'numeric',year:'numeric'}:{month:'short',day:'numeric'});}
+// Parse YYYY-MM-DD as LOCAL midnight (not UTC) so all-day events don't shift by a day in non-UTC zones.
+// Full ISO timestamps with 'T' still go through native Date.
+function parseDate(s){
+  if(s instanceof Date) return s;
+  if(typeof s==='string'){
+    const m=s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if(m) return new Date(+m[1],+m[2]-1,+m[3]);
+  }
+  return new Date(s);
+}
+function fmtDate(iso){const d=parseDate(iso),y=d.getFullYear(),ny=new Date().getFullYear();return d.toLocaleDateString('en-US',y!==ny?{month:'short',day:'numeric',year:'numeric'}:{month:'short',day:'numeric'});}
 function ageStr(d){if(!d)return '';const m=Math.round((Date.now()-d.getTime())/60000);if(m<2)return 'just now';if(m<60)return `${m}m ago`;return `${Math.round(m/60)}h ago`;}
 
 // ===== NAV =====
@@ -526,7 +560,7 @@ function renderNowContent(){
 // ===== TIMELINE + RESOURCE SAVE (embedded in Now) =====
 function buildTimelineHTML(){
   const base=new Date(); base.setHours(0,0,0,0);
-  function dayOf(iso){return Math.round((new Date(iso)-base)/86400000);}
+  function dayOf(iso){return Math.round((parseDate(iso)-base)/86400000);}
   function dayLabel(d){const dt=new Date(base);dt.setDate(dt.getDate()+d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
   const kvkDay=liveData&&liveData.kvk?Math.round(liveData.kvk.timeLeft.total/86400000):19;
 
@@ -708,7 +742,9 @@ function clearLaunchDate(){
 // ===== INIT =====
 buildDropdown();
 document.getElementById('panel-now').innerHTML=`<h2>🔴 Now</h2><div class="ab">⏳ Loading live event data…</div>`;
-Promise.all([fetchLive(), fetchCalendar(), fetchTimelineRules()]).then(()=>{ showTab('now'); });
+Promise.all([fetchLive(), fetchCalendar(), fetchTimelineRules()])
+  .then(()=>fetchObservedEvents())
+  .then(()=>{ showTab('now'); });
 </script>
 </body>
 </html>
