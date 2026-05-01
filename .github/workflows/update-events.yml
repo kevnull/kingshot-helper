@@ -13,9 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # continue-on-error so a kingshot.net hiccup doesn't block the calendar refresh below
       - name: Fetch live events from kingshot.net
+        id: fetch_events
+        continue-on-error: true
         run: |
-          curl -sf https://kingshot.net/api/events \
+          curl -sS --retry 4 --retry-delay 15 --retry-all-errors --fail \
+            https://kingshot.net/api/events \
             -H "Accept: application/json" \
             -o data/events.json
           echo "Fetched at $(date -u)"
@@ -29,12 +33,21 @@ jobs:
           "
 
       - name: Fetch and parse Google Calendar
+        id: fetch_calendar
+        continue-on-error: true
         run: |
           CAL_ID="e6196c2703be23e87e027067c77f8990c4434a659a08fc9c3612f60c83b42c0e@group.calendar.google.com"
           ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$CAL_ID'))")
-          curl -sf "https://calendar.google.com/calendar/ical/${ENCODED}/public/basic.ics" \
+          curl -sS --retry 4 --retry-delay 15 --retry-all-errors --fail \
+            "https://calendar.google.com/calendar/ical/${ENCODED}/public/basic.ics" \
             -o data/calendar.ics
           python3 scripts/parse_calendar.py
+
+      - name: Fail if both upstream fetches failed
+        if: steps.fetch_events.outcome == 'failure' && steps.fetch_calendar.outcome == 'failure'
+        run: |
+          echo "Both upstream fetches failed — nothing to commit." >&2
+          exit 1
 
       - name: Commit if data changed
         run: |
