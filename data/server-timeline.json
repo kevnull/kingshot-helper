@@ -67,5 +67,16 @@
       "unlockDayMin": 170,
       "notes": "Levels 12–20 unlock at day 170 per server timeline. Lower levels may be available earlier."
     }
+  ],
+
+  "eventVariants": [
+    {
+      "calendarKey": "strongest governor",
+      "preName": "Hall of Governors",
+      "postName": "Strongest Governor",
+      "switchAtDay": 70,
+      "switchAtMilestone": "Age of Truegold",
+      "notes": "Pre-AoT servers see Hall of Governors in this slot (different scoring rules). Post-AoT (~day 70) it's replaced by Strongest Governor. Calendar feed always says 'Strongest Governor Event'."
+    }
   ]
 }

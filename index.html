@@ -194,6 +194,12 @@ const EVENTS=[
  tip:'Forgehammers = 4,000 pts in KvK vs 800 in Stand of Arms — 5× more valuable.',
  strat:'KvK Prep mirrors SG. Commit premium resources here first, SG gets the remainder.',
  sources:[{t:'KvK Guide — Kingshot Handbook',u:'https://kingshothandbook.com/events/kvk'},{t:'KvK Prep — Kingshot Database',u:'https://kingshotdata.com/events/kvk-prep/'}]},
+{id:'hall-of-governors',name:'Hall of Governors',emoji:'🏛️',status:'future',
+ desc:'Pre-AoT 7-day governor scoring event. Replaced by Strongest Governor after Age of Truegold (~day 70). Day themes shift slightly each round — confirm in-game on Day 1.',
+ tasks:[{a:'Day 1: Construction + Research speedups',p:'highest day'},{a:'Day 2: Roulette spins + Hero Shard ascensions + iron gathering',p:'high'},{a:'Day 3: Troop training + promotions',p:'high'},{a:'Day 4: Research + gathering',p:'~1k pts/hr research'},{a:'Day 5: Forge hammers + widgets on heroes',p:'medium'},{a:'Day 6: Governor Gear upgrades (not charms)',p:'medium'},{a:'Day 7: Hero shards + leftover speedups',p:'cleanup'}],
+ tip:'Stack a big Town Center upgrade to finish on Day 1. Bank Mythic shards for Days 2 + 7 (8× Rare value). Iron gathers more pts/time than other resources. Use the troop-training capacity buff on Day 3 (triples queues).',
+ strat:'Save ~2 weeks of premium resources beforehand. Day 1 construction/research speedups score the most — dump them. Hold gems for Day 2 roulette spins.',
+ sources:[{t:'Hall of Governors Walkthrough — From The Grind Gaming',u:'https://www.youtube.com/watch?v=SJUtomxzWJA'}]},
 {id:'strongest-governor',name:'Strongest Governor',emoji:'🏅',status:'future',
  desc:'7-stage personal development scoring event. Comes after KvK.',
  tasks:[{a:'Mithril',p:'40,000'},{a:'Adv Taming Marks',p:'15,000'},{a:'Widget Schematics',p:'8,000'},{a:'Hero Roulette 10-spin',p:'8,000'},{a:'Forgehammers',p:'4,000 each'},{a:'Train T10 troops',p:'39/troop'},{a:'Speedup 1M min',p:'30'}],
@@ -266,6 +272,7 @@ const CAL_MAP={
   'tri-alliance clash':{id:null,c:'#7c3aed'},
   'hero rally':{id:'hero-rally',c:'#d97706'},
   'strongest governor':{id:'strongest-governor',c:'#92400e'},
+  'hall of governors': {id:'hall-of-governors',c:'#a16207'},
   'fishing tournament':{id:null,c:'#0369a1'},
   'officer project':{id:'stand-of-arms',c:'#2563eb'},
   'armament competition':{id:'stand-of-arms',c:'#2563eb'},
@@ -376,6 +383,23 @@ async function fetchCalendar(){
     if(r.ok){ calendarData=await r.json(); return true; }
   }catch(e){}
   return false;
+}
+
+// Some calendar entries represent a time slot that's filled by different events depending on
+// server progression (e.g. "Strongest Governor Event" → "Hall of Governors" pre-AoT, day < 70).
+// Rewrites calendarData.events[i].name in place so all downstream consumers see the right name.
+function resolveCalendarVariants(){
+  if(!(timelineRules&&timelineRules.eventVariants&&calendarData&&calendarData.events)) return;
+  const age=serverAgeDays();
+  for(const v of timelineRules.eventVariants){
+    const key=(v.calendarKey||'').toLowerCase();
+    // If server age unset, default to preName (matches codebase's pre-AoT assumption — see comments around lockedCalendarKeys).
+    const target=(age==null||age<v.switchAtDay)?v.preName:v.postName;
+    if(!key||!target) continue;
+    for(const ev of calendarData.events){
+      if(ev.name.toLowerCase().includes(key)) ev.name=target;
+    }
+  }
 }
 
 // Loads server-specific manual/projected events and merges them into calendarData.events.
@@ -574,6 +598,7 @@ function buildTimelineHTML(){
     calendarData.events.forEach(ev=>{
       if(isCalEventLocked(ev.name,OMIT)) return;
       const nl=ev.name.toLowerCase();
+      // SG only runs after first KvK; HoG (its pre-AoT variant) is fine pre-KvK.
       if(nl.includes('strongest governor')&&dayOf(ev.start)<kvkDay) return;
       if(nl.includes('kvk matchmaking')) return;
       const s=Math.max(0,dayOf(ev.start)), e2=dayOf(ev.end);
@@ -744,7 +769,7 @@ buildDropdown();
 document.getElementById('panel-now').innerHTML=`<h2>🔴 Now</h2><div class="ab">⏳ Loading live event data…</div>`;
 Promise.all([fetchLive(), fetchCalendar(), fetchTimelineRules()])
   .then(()=>fetchObservedEvents())
-  .then(()=>{ showTab('now'); });
+  .then(()=>{ resolveCalendarVariants(); showTab('now'); });
 </script>
 </body>
 </html>
