@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-05-04T02:30:59Z",
+  "_generatedAt": "2026-05-04T06:36:51Z",
   "events": [
     {
       "name": "KVK Day 1",
@@ -47,14 +47,9 @@
       "end": "2026-04-29"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Alliance Mobilization",
       "start": "2026-04-27",
-      "end": "2026-05-04"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-04-27",
-      "end": "2026-05-04"
+      "end": "2026-05-03"
     },
     {
       "name": "Swordland Showdown",
@@ -67,12 +62,17 @@
       "end": "2026-05-11"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Alliance Championship Event",
       "start": "2026-04-27",
-      "end": "2026-05-03"
+      "end": "2026-05-04"
     },
     {
       "name": "Merchant Empire Event",
+      "start": "2026-04-27",
+      "end": "2026-05-04"
+    },
+    {
+      "name": "Alliance Brawl Event",
       "start": "2026-04-27",
       "end": "2026-05-04"
     },
@@ -127,9 +127,14 @@
       "end": "2026-05-13"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Tri-Alliance Clash",
       "start": "2026-05-11",
-      "end": "2026-05-18"
+      "end": "2026-05-17"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-05-11",
+      "end": "2026-05-17"
     },
     {
       "name": "Swordland Showdown",
@@ -142,14 +147,9 @@
       "end": "2026-05-25"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Championship Event",
       "start": "2026-05-11",
-      "end": "2026-05-17"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-05-11",
-      "end": "2026-05-17"
+      "end": "2026-05-18"
     },
     {
       "name": "Fishing Tournament",
@@ -172,14 +172,14 @@
       "end": "2026-05-18"
     },
     {
-      "name": "Officer project",
-      "start": "2026-05-17",
-      "end": "2026-05-19"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-05-17",
       "end": "2026-05-20"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-05-17",
+      "end": "2026-05-19"
     },
     {
       "name": "KVK Day 1",
@@ -227,14 +227,9 @@
       "end": "2026-05-27"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Alliance Mobilization",
       "start": "2026-05-25",
-      "end": "2026-06-01"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-05-25",
-      "end": "2026-06-01"
+      "end": "2026-05-31"
     },
     {
       "name": "Swordland Showdown",
@@ -247,12 +242,17 @@
       "end": "2026-06-08"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Alliance Championship Event",
       "start": "2026-05-25",
-      "end": "2026-05-31"
+      "end": "2026-06-01"
     },
     {
       "name": "Merchant Empire Event",
+      "start": "2026-05-25",
+      "end": "2026-06-01"
+    },
+    {
+      "name": "Alliance Brawl Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
@@ -307,9 +307,14 @@
       "end": "2026-06-10"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Tri-Alliance Clash",
       "start": "2026-06-08",
-      "end": "2026-06-15"
+      "end": "2026-06-14"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-06-08",
+      "end": "2026-06-14"
     },
     {
       "name": "Swordland Showdown",
@@ -322,14 +327,9 @@
       "end": "2026-06-22"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Championship Event",
       "start": "2026-06-08",
-      "end": "2026-06-14"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-06-08",
-      "end": "2026-06-14"
+      "end": "2026-06-15"
     },
     {
       "name": "Fishing Tournament",
@@ -352,14 +352,14 @@
       "end": "2026-06-15"
     },
     {
-      "name": "Officer project",
-      "start": "2026-06-14",
-      "end": "2026-06-16"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-06-14",
       "end": "2026-06-17"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-06-14",
+      "end": "2026-06-16"
     },
     {
       "name": "KVK Day 1",
@@ -407,14 +407,9 @@
       "end": "2026-06-24"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Alliance Mobilization",
       "start": "2026-06-22",
-      "end": "2026-06-29"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-06-22",
-      "end": "2026-06-29"
+      "end": "2026-06-28"
     },
     {
       "name": "Swordland Showdown",
@@ -427,12 +422,17 @@
       "end": "2026-07-06"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Alliance Championship Event",
       "start": "2026-06-22",
-      "end": "2026-06-28"
+      "end": "2026-06-29"
     },
     {
       "name": "Merchant Empire Event",
+      "start": "2026-06-22",
+      "end": "2026-06-29"
+    },
+    {
+      "name": "Alliance Brawl Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
@@ -487,9 +487,14 @@
       "end": "2026-07-08"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Tri-Alliance Clash",
       "start": "2026-07-06",
-      "end": "2026-07-13"
+      "end": "2026-07-12"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-07-06",
+      "end": "2026-07-12"
     },
     {
       "name": "Swordland Showdown",
@@ -502,14 +507,9 @@
       "end": "2026-07-20"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Championship Event",
       "start": "2026-07-06",
-      "end": "2026-07-12"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-07-06",
-      "end": "2026-07-12"
+      "end": "2026-07-13"
     },
     {
       "name": "Fishing Tournament",
@@ -532,14 +532,14 @@
       "end": "2026-07-13"
     },
     {
-      "name": "Officer project",
-      "start": "2026-07-12",
-      "end": "2026-07-14"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-07-12",
       "end": "2026-07-15"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-07-12",
+      "end": "2026-07-14"
     },
     {
       "name": "KVK Day 1",
