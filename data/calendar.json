@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-05-17T02:41:30Z",
+  "_generatedAt": "2026-05-17T06:41:42Z",
   "events": [
     {
       "name": "Hall of Heroes",
@@ -37,7 +37,7 @@
       "end": "2026-05-13"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Swordland Showdown",
       "start": "2026-05-11",
       "end": "2026-05-18"
     },
@@ -52,14 +52,14 @@
       "end": "2026-05-25"
     },
     {
+      "name": "Alliance Championship Event",
+      "start": "2026-05-11",
+      "end": "2026-05-18"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-05-11",
       "end": "2026-05-17"
-    },
-    {
-      "name": "Swordland Showdown",
-      "start": "2026-05-11",
-      "end": "2026-05-18"
     },
     {
       "name": "Fishing Tournament",
@@ -82,24 +82,19 @@
       "end": "2026-05-18"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-05-17",
-      "end": "2026-05-20"
-    },
-    {
       "name": "Officer project",
       "start": "2026-05-17",
       "end": "2026-05-19"
     },
     {
+      "name": "Hall of Heroes",
+      "start": "2026-05-17",
+      "end": "2026-05-20"
+    },
+    {
       "name": "KVK Day 1",
       "start": "2026-05-18",
       "end": "2026-05-19"
-    },
-    {
-      "name": "KVK Day 2",
-      "start": "2026-05-19",
-      "end": "2026-05-20"
     },
     {
       "name": "Eternity's Reach",
@@ -110,6 +105,11 @@
       "name": "Vikings Vengeance",
       "start": "2026-05-19",
       "end": "2026-05-22"
+    },
+    {
+      "name": "KVK Day 2",
+      "start": "2026-05-19",
+      "end": "2026-05-20"
     },
     {
       "name": "KVK Day 3",
@@ -137,12 +137,12 @@
       "end": "2026-05-27"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Swordland Showdown",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
@@ -152,17 +152,17 @@
       "end": "2026-06-08"
     },
     {
+      "name": "Alliance Championship Event",
+      "start": "2026-05-25",
+      "end": "2026-06-01"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-05-25",
       "end": "2026-05-31"
     },
     {
-      "name": "Alliance Brawl Event",
-      "start": "2026-05-25",
-      "end": "2026-06-01"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Merchant Empire Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
@@ -217,7 +217,7 @@
       "end": "2026-06-10"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Swordland Showdown",
       "start": "2026-06-08",
       "end": "2026-06-15"
     },
@@ -232,14 +232,14 @@
       "end": "2026-06-22"
     },
     {
+      "name": "Alliance Championship Event",
+      "start": "2026-06-08",
+      "end": "2026-06-15"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-06-08",
       "end": "2026-06-14"
-    },
-    {
-      "name": "Swordland Showdown",
-      "start": "2026-06-08",
-      "end": "2026-06-15"
     },
     {
       "name": "Fishing Tournament",
@@ -262,24 +262,19 @@
       "end": "2026-06-15"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-06-14",
-      "end": "2026-06-17"
-    },
-    {
       "name": "Officer project",
       "start": "2026-06-14",
       "end": "2026-06-16"
     },
     {
+      "name": "Hall of Heroes",
+      "start": "2026-06-14",
+      "end": "2026-06-17"
+    },
+    {
       "name": "KVK Day 1",
       "start": "2026-06-15",
       "end": "2026-06-16"
-    },
-    {
-      "name": "KVK Day 2",
-      "start": "2026-06-16",
-      "end": "2026-06-17"
     },
     {
       "name": "Eternity's Reach",
@@ -290,6 +285,11 @@
       "name": "Vikings Vengeance",
       "start": "2026-06-16",
       "end": "2026-06-19"
+    },
+    {
+      "name": "KVK Day 2",
+      "start": "2026-06-16",
+      "end": "2026-06-17"
     },
     {
       "name": "KVK Day 3",
@@ -317,12 +317,12 @@
       "end": "2026-06-24"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Swordland Showdown",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
@@ -332,17 +332,17 @@
       "end": "2026-07-06"
     },
     {
+      "name": "Alliance Championship Event",
+      "start": "2026-06-22",
+      "end": "2026-06-29"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-06-22",
       "end": "2026-06-28"
     },
     {
-      "name": "Alliance Brawl Event",
-      "start": "2026-06-22",
-      "end": "2026-06-29"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Merchant Empire Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
@@ -397,7 +397,7 @@
       "end": "2026-07-08"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Swordland Showdown",
       "start": "2026-07-06",
       "end": "2026-07-13"
     },
@@ -412,14 +412,14 @@
       "end": "2026-07-20"
     },
     {
+      "name": "Alliance Championship Event",
+      "start": "2026-07-06",
+      "end": "2026-07-13"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-07-06",
       "end": "2026-07-12"
-    },
-    {
-      "name": "Swordland Showdown",
-      "start": "2026-07-06",
-      "end": "2026-07-13"
     },
     {
       "name": "Fishing Tournament",
@@ -442,24 +442,19 @@
       "end": "2026-07-13"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-07-12",
-      "end": "2026-07-15"
-    },
-    {
       "name": "Officer project",
       "start": "2026-07-12",
       "end": "2026-07-14"
     },
     {
+      "name": "Hall of Heroes",
+      "start": "2026-07-12",
+      "end": "2026-07-15"
+    },
+    {
       "name": "KVK Day 1",
       "start": "2026-07-13",
       "end": "2026-07-14"
-    },
-    {
-      "name": "KVK Day 2",
-      "start": "2026-07-14",
-      "end": "2026-07-15"
     },
     {
       "name": "Eternity's Reach",
@@ -470,6 +465,11 @@
       "name": "Vikings Vengeance",
       "start": "2026-07-14",
       "end": "2026-07-17"
+    },
+    {
+      "name": "KVK Day 2",
+      "start": "2026-07-14",
+      "end": "2026-07-15"
     },
     {
       "name": "KVK Day 3",
@@ -497,12 +497,12 @@
       "end": "2026-07-22"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Swordland Showdown",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
@@ -512,17 +512,17 @@
       "end": "2026-08-03"
     },
     {
+      "name": "Alliance Championship Event",
+      "start": "2026-07-20",
+      "end": "2026-07-27"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-07-20",
       "end": "2026-07-26"
     },
     {
-      "name": "Alliance Brawl Event",
-      "start": "2026-07-20",
-      "end": "2026-07-27"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Merchant Empire Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
