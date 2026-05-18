@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-05-18T15:19:59Z",
+  "_generatedAt": "2026-05-18T17:56:35Z",
   "events": [
     {
       "name": "Strongest Governor Event",
@@ -32,11 +32,6 @@
       "end": "2026-05-13"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-05-11",
-      "end": "2026-05-18"
-    },
-    {
       "name": "Tri-Alliance Clash",
       "start": "2026-05-11",
       "end": "2026-05-17"
@@ -45,6 +40,11 @@
       "name": "Alliance Mobilization",
       "start": "2026-05-11",
       "end": "2026-05-17"
+    },
+    {
+      "name": "Alliance Championship Event",
+      "start": "2026-05-11",
+      "end": "2026-05-18"
     },
     {
       "name": "Hero Rally",
@@ -132,6 +132,16 @@
       "end": "2026-05-27"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-05-25",
+      "end": "2026-05-31"
+    },
+    {
+      "name": "Alliance Championship Event",
+      "start": "2026-05-25",
+      "end": "2026-06-01"
+    },
+    {
       "name": "Alliance Brawl Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
@@ -140,16 +150,6 @@
       "name": "Merchant Empire Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-05-25",
-      "end": "2026-06-01"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-05-25",
-      "end": "2026-05-31"
     },
     {
       "name": "Hero Rally",
@@ -212,11 +212,6 @@
       "end": "2026-06-10"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-06-08",
-      "end": "2026-06-15"
-    },
-    {
       "name": "Tri-Alliance Clash",
       "start": "2026-06-08",
       "end": "2026-06-14"
@@ -225,6 +220,11 @@
       "name": "Alliance Mobilization",
       "start": "2026-06-08",
       "end": "2026-06-14"
+    },
+    {
+      "name": "Alliance Championship Event",
+      "start": "2026-06-08",
+      "end": "2026-06-15"
     },
     {
       "name": "Hero Rally",
@@ -312,6 +312,16 @@
       "end": "2026-06-24"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-06-22",
+      "end": "2026-06-28"
+    },
+    {
+      "name": "Alliance Championship Event",
+      "start": "2026-06-22",
+      "end": "2026-06-29"
+    },
+    {
       "name": "Alliance Brawl Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
@@ -320,16 +330,6 @@
       "name": "Merchant Empire Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-06-22",
-      "end": "2026-06-29"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-06-22",
-      "end": "2026-06-28"
     },
     {
       "name": "Hero Rally",
@@ -392,11 +392,6 @@
       "end": "2026-07-08"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-07-06",
-      "end": "2026-07-13"
-    },
-    {
       "name": "Tri-Alliance Clash",
       "start": "2026-07-06",
       "end": "2026-07-12"
@@ -405,6 +400,11 @@
       "name": "Alliance Mobilization",
       "start": "2026-07-06",
       "end": "2026-07-12"
+    },
+    {
+      "name": "Alliance Championship Event",
+      "start": "2026-07-06",
+      "end": "2026-07-13"
     },
     {
       "name": "Hero Rally",
@@ -492,6 +492,16 @@
       "end": "2026-07-22"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-07-20",
+      "end": "2026-07-26"
+    },
+    {
+      "name": "Alliance Championship Event",
+      "start": "2026-07-20",
+      "end": "2026-07-27"
+    },
+    {
       "name": "Alliance Brawl Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
@@ -500,16 +510,6 @@
       "name": "Merchant Empire Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-07-20",
-      "end": "2026-07-27"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-07-20",
-      "end": "2026-07-26"
     },
     {
       "name": "Hero Rally",
