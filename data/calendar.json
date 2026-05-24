@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-05-24T02:49:18Z",
+  "_generatedAt": "2026-05-24T06:56:13Z",
   "events": [
     {
       "name": "Hall of Heroes",
@@ -12,14 +12,9 @@
       "end": "2026-05-25"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-05-11",
       "end": "2026-05-18"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-05-11",
-      "end": "2026-05-17"
     },
     {
       "name": "Tri-Alliance Clash",
@@ -27,19 +22,24 @@
       "end": "2026-05-17"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Alliance Mobilization",
       "start": "2026-05-11",
-      "end": "2026-05-18"
+      "end": "2026-05-17"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-05-12",
-      "end": "2026-05-15"
+      "name": "Swordland Showdown",
+      "start": "2026-05-11",
+      "end": "2026-05-18"
     },
     {
       "name": "Sanctuary Battle",
       "start": "2026-05-12",
       "end": "2026-05-16"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-05-12",
+      "end": "2026-05-15"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -112,12 +112,12 @@
       "end": "2026-06-08"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Championship Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Brawl Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
@@ -127,12 +127,12 @@
       "end": "2026-05-31"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Swordland Showdown",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Merchant Empire Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
@@ -192,14 +192,9 @@
       "end": "2026-06-22"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-06-08",
       "end": "2026-06-15"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-06-08",
-      "end": "2026-06-14"
     },
     {
       "name": "Tri-Alliance Clash",
@@ -207,19 +202,24 @@
       "end": "2026-06-14"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Alliance Mobilization",
       "start": "2026-06-08",
-      "end": "2026-06-15"
+      "end": "2026-06-14"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-06-09",
-      "end": "2026-06-12"
+      "name": "Swordland Showdown",
+      "start": "2026-06-08",
+      "end": "2026-06-15"
     },
     {
       "name": "Sanctuary Battle",
       "start": "2026-06-09",
       "end": "2026-06-13"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-06-09",
+      "end": "2026-06-12"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -292,12 +292,12 @@
       "end": "2026-07-06"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Championship Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Brawl Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
@@ -307,12 +307,12 @@
       "end": "2026-06-28"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Swordland Showdown",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Merchant Empire Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
@@ -372,14 +372,9 @@
       "end": "2026-07-20"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-07-06",
       "end": "2026-07-13"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-07-06",
-      "end": "2026-07-12"
     },
     {
       "name": "Tri-Alliance Clash",
@@ -387,19 +382,24 @@
       "end": "2026-07-12"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Alliance Mobilization",
       "start": "2026-07-06",
-      "end": "2026-07-13"
+      "end": "2026-07-12"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-07-07",
-      "end": "2026-07-10"
+      "name": "Swordland Showdown",
+      "start": "2026-07-06",
+      "end": "2026-07-13"
     },
     {
       "name": "Sanctuary Battle",
       "start": "2026-07-07",
       "end": "2026-07-11"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-07-07",
+      "end": "2026-07-10"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -472,12 +472,12 @@
       "end": "2026-08-03"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Championship Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Brawl Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
@@ -487,12 +487,12 @@
       "end": "2026-07-26"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Swordland Showdown",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
     {
-      "name": "Alliance Championship Event",
+      "name": "Merchant Empire Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
