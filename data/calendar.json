@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-06-05T02:56:45Z",
+  "_generatedAt": "2026-06-05T08:02:54Z",
   "events": [
     {
       "name": "KvK Day 5",
@@ -22,12 +22,7 @@
       "end": "2026-06-08"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-05-25",
-      "end": "2026-06-01"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Alliance Brawl Event",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
@@ -37,7 +32,12 @@
       "end": "2026-06-01"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Alliance Championship Event",
+      "start": "2026-05-25",
+      "end": "2026-06-01"
+    },
+    {
+      "name": "Swordland Showdown",
       "start": "2026-05-25",
       "end": "2026-06-01"
     },
@@ -122,14 +122,14 @@
       "end": "2026-06-14"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-06-09",
-      "end": "2026-06-12"
-    },
-    {
       "name": "Sanctuary Battle",
       "start": "2026-06-09",
       "end": "2026-06-13"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-06-09",
+      "end": "2026-06-12"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -142,14 +142,14 @@
       "end": "2026-06-15"
     },
     {
-      "name": "Officer project",
-      "start": "2026-06-14",
-      "end": "2026-06-16"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-06-14",
       "end": "2026-06-17"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-06-14",
+      "end": "2026-06-16"
     },
     {
       "name": "KVK Day 1",
@@ -202,12 +202,7 @@
       "end": "2026-07-06"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-06-22",
-      "end": "2026-06-29"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Alliance Brawl Event",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
@@ -217,7 +212,12 @@
       "end": "2026-06-29"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Alliance Championship Event",
+      "start": "2026-06-22",
+      "end": "2026-06-29"
+    },
+    {
+      "name": "Swordland Showdown",
       "start": "2026-06-22",
       "end": "2026-06-29"
     },
@@ -302,14 +302,14 @@
       "end": "2026-07-12"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-07-07",
-      "end": "2026-07-10"
-    },
-    {
       "name": "Sanctuary Battle",
       "start": "2026-07-07",
       "end": "2026-07-11"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-07-07",
+      "end": "2026-07-10"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -322,14 +322,14 @@
       "end": "2026-07-13"
     },
     {
-      "name": "Officer project",
-      "start": "2026-07-12",
-      "end": "2026-07-14"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-07-12",
       "end": "2026-07-15"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-07-12",
+      "end": "2026-07-14"
     },
     {
       "name": "KVK Day 1",
@@ -382,12 +382,7 @@
       "end": "2026-08-03"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-07-20",
-      "end": "2026-07-27"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Alliance Brawl Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
@@ -397,7 +392,12 @@
       "end": "2026-07-27"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Alliance Championship Event",
+      "start": "2026-07-20",
+      "end": "2026-07-27"
+    },
+    {
+      "name": "Swordland Showdown",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
@@ -482,14 +482,14 @@
       "end": "2026-08-09"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-08-04",
-      "end": "2026-08-07"
-    },
-    {
       "name": "Sanctuary Battle",
       "start": "2026-08-04",
       "end": "2026-08-08"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-08-04",
+      "end": "2026-08-07"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -502,14 +502,14 @@
       "end": "2026-08-10"
     },
     {
-      "name": "Officer project",
-      "start": "2026-08-09",
-      "end": "2026-08-11"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-08-09",
       "end": "2026-08-12"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-08-09",
+      "end": "2026-08-11"
     },
     {
       "name": "KVK Day 1",
