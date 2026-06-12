@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-06-11T21:58:15Z",
+  "_generatedAt": "2026-06-12T03:30:10Z",
   "events": [
     {
       "name": "Mystic Divination Event",
@@ -42,12 +42,7 @@
       "end": "2026-06-10"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-06-08",
-      "end": "2026-06-22"
-    },
-    {
-      "name": "Alliance Mobilization",
+      "name": "Tri-Alliance Clash",
       "start": "2026-06-08",
       "end": "2026-06-14"
     },
@@ -57,7 +52,12 @@
       "end": "2026-06-15"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Hero Rally",
+      "start": "2026-06-08",
+      "end": "2026-06-22"
+    },
+    {
+      "name": "Alliance Mobilization",
       "start": "2026-06-08",
       "end": "2026-06-14"
     },
@@ -87,14 +87,14 @@
       "end": "2026-06-15"
     },
     {
-      "name": "Officer project",
-      "start": "2026-06-14",
-      "end": "2026-06-16"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-06-14",
       "end": "2026-06-17"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-06-14",
+      "end": "2026-06-16"
     },
     {
       "name": "KVK Day 1",
@@ -142,14 +142,9 @@
       "end": "2026-06-24"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-06-22",
-      "end": "2026-07-06"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-06-22",
-      "end": "2026-06-28"
+      "end": "2026-06-29"
     },
     {
       "name": "Alliance Brawl Event",
@@ -162,9 +157,14 @@
       "end": "2026-06-29"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Hero Rally",
       "start": "2026-06-22",
-      "end": "2026-06-29"
+      "end": "2026-07-06"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-06-22",
+      "end": "2026-06-28"
     },
     {
       "name": "Alliance Championship Event",
@@ -222,12 +222,7 @@
       "end": "2026-07-08"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-07-06",
-      "end": "2026-07-20"
-    },
-    {
-      "name": "Alliance Mobilization",
+      "name": "Tri-Alliance Clash",
       "start": "2026-07-06",
       "end": "2026-07-12"
     },
@@ -237,7 +232,12 @@
       "end": "2026-07-13"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Hero Rally",
+      "start": "2026-07-06",
+      "end": "2026-07-20"
+    },
+    {
+      "name": "Alliance Mobilization",
       "start": "2026-07-06",
       "end": "2026-07-12"
     },
@@ -267,14 +267,14 @@
       "end": "2026-07-13"
     },
     {
-      "name": "Officer project",
-      "start": "2026-07-12",
-      "end": "2026-07-14"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-07-12",
       "end": "2026-07-15"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-07-12",
+      "end": "2026-07-14"
     },
     {
       "name": "KVK Day 1",
@@ -322,14 +322,9 @@
       "end": "2026-07-22"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-07-20",
-      "end": "2026-08-03"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-07-20",
-      "end": "2026-07-26"
+      "end": "2026-07-27"
     },
     {
       "name": "Alliance Brawl Event",
@@ -342,9 +337,14 @@
       "end": "2026-07-27"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Hero Rally",
       "start": "2026-07-20",
-      "end": "2026-07-27"
+      "end": "2026-08-03"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-07-20",
+      "end": "2026-07-26"
     },
     {
       "name": "Alliance Championship Event",
@@ -402,12 +402,7 @@
       "end": "2026-08-05"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-08-03",
-      "end": "2026-08-17"
-    },
-    {
-      "name": "Alliance Mobilization",
+      "name": "Tri-Alliance Clash",
       "start": "2026-08-03",
       "end": "2026-08-09"
     },
@@ -417,7 +412,12 @@
       "end": "2026-08-10"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Hero Rally",
+      "start": "2026-08-03",
+      "end": "2026-08-17"
+    },
+    {
+      "name": "Alliance Mobilization",
       "start": "2026-08-03",
       "end": "2026-08-09"
     },
@@ -447,14 +447,14 @@
       "end": "2026-08-10"
     },
     {
-      "name": "Officer project",
-      "start": "2026-08-09",
-      "end": "2026-08-11"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-08-09",
       "end": "2026-08-12"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-08-09",
+      "end": "2026-08-11"
     },
     {
       "name": "KVK Day 1",
@@ -502,14 +502,9 @@
       "end": "2026-08-19"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-08-17",
-      "end": "2026-08-31"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-08-17",
-      "end": "2026-08-23"
+      "end": "2026-08-24"
     },
     {
       "name": "Alliance Brawl Event",
@@ -522,9 +517,14 @@
       "end": "2026-08-24"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Hero Rally",
       "start": "2026-08-17",
-      "end": "2026-08-24"
+      "end": "2026-08-31"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-08-17",
+      "end": "2026-08-23"
     },
     {
       "name": "Alliance Championship Event",
@@ -540,6 +540,11 @@
       "name": "Desert Trial Event / Champion's Way Event",
       "start": "2026-08-19",
       "end": "2026-08-22"
+    },
+    {
+      "name": "Mystic Divination Event",
+      "start": "2026-08-21",
+      "end": "2026-08-23"
     }
   ]
 }
