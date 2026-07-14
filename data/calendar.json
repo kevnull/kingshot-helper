@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-07-14T09:53:04Z",
+  "_generatedAt": "2026-07-14T13:23:05Z",
   "events": [
     {
       "name": "Vikings Vengeance",
@@ -32,11 +32,6 @@
       "end": "2026-07-13"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-07-06",
-      "end": "2026-07-20"
-    },
-    {
       "name": "Tri-Alliance Clash",
       "start": "2026-07-06",
       "end": "2026-07-12"
@@ -50,6 +45,11 @@
       "name": "Alliance Mobilization",
       "start": "2026-07-06",
       "end": "2026-07-12"
+    },
+    {
+      "name": "Hero Rally",
+      "start": "2026-07-06",
+      "end": "2026-07-20"
     },
     {
       "name": "Sanctuary Battle",
@@ -87,17 +87,17 @@
       "end": "2026-07-14"
     },
     {
-      "name": "KVK Day 2",
-      "start": "2026-07-14",
-      "end": "2026-07-15"
-    },
-    {
       "name": "Vikings Vengeance",
       "start": "2026-07-14",
       "end": "2026-07-17"
     },
     {
       "name": "Eternity's Reach",
+      "start": "2026-07-14",
+      "end": "2026-07-15"
+    },
+    {
+      "name": "KVK Day 2",
       "start": "2026-07-14",
       "end": "2026-07-15"
     },
@@ -132,9 +132,9 @@
       "end": "2026-07-27"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-07-20",
-      "end": "2026-08-03"
+      "end": "2026-07-27"
     },
     {
       "name": "Swordland Showdown",
@@ -147,14 +147,14 @@
       "end": "2026-07-26"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
       "start": "2026-07-20",
       "end": "2026-07-27"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Hero Rally",
       "start": "2026-07-20",
-      "end": "2026-07-27"
+      "end": "2026-08-03"
     },
     {
       "name": "Sanctuary Battle",
@@ -212,11 +212,6 @@
       "end": "2026-08-10"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-08-03",
-      "end": "2026-08-17"
-    },
-    {
       "name": "Tri-Alliance Clash",
       "start": "2026-08-03",
       "end": "2026-08-09"
@@ -230,6 +225,11 @@
       "name": "Alliance Mobilization",
       "start": "2026-08-03",
       "end": "2026-08-09"
+    },
+    {
+      "name": "Hero Rally",
+      "start": "2026-08-03",
+      "end": "2026-08-17"
     },
     {
       "name": "Sanctuary Battle",
@@ -267,17 +267,17 @@
       "end": "2026-08-11"
     },
     {
-      "name": "KVK Day 2",
-      "start": "2026-08-11",
-      "end": "2026-08-12"
-    },
-    {
       "name": "Vikings Vengeance",
       "start": "2026-08-11",
       "end": "2026-08-14"
     },
     {
       "name": "Eternity's Reach",
+      "start": "2026-08-11",
+      "end": "2026-08-12"
+    },
+    {
+      "name": "KVK Day 2",
       "start": "2026-08-11",
       "end": "2026-08-12"
     },
@@ -312,9 +312,9 @@
       "end": "2026-08-24"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-08-17",
-      "end": "2026-08-31"
+      "end": "2026-08-24"
     },
     {
       "name": "Swordland Showdown",
@@ -327,14 +327,14 @@
       "end": "2026-08-23"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
       "start": "2026-08-17",
       "end": "2026-08-24"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Hero Rally",
       "start": "2026-08-17",
-      "end": "2026-08-24"
+      "end": "2026-08-31"
     },
     {
       "name": "Sanctuary Battle",
@@ -392,11 +392,6 @@
       "end": "2026-09-07"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-08-31",
-      "end": "2026-09-14"
-    },
-    {
       "name": "Tri-Alliance Clash",
       "start": "2026-08-31",
       "end": "2026-09-06"
@@ -410,6 +405,11 @@
       "name": "Alliance Mobilization",
       "start": "2026-08-31",
       "end": "2026-09-06"
+    },
+    {
+      "name": "Hero Rally",
+      "start": "2026-08-31",
+      "end": "2026-09-14"
     },
     {
       "name": "Sanctuary Battle",
@@ -447,17 +447,17 @@
       "end": "2026-09-08"
     },
     {
-      "name": "KVK Day 2",
-      "start": "2026-09-08",
-      "end": "2026-09-09"
-    },
-    {
       "name": "Vikings Vengeance",
       "start": "2026-09-08",
       "end": "2026-09-11"
     },
     {
       "name": "Eternity's Reach",
+      "start": "2026-09-08",
+      "end": "2026-09-09"
+    },
+    {
+      "name": "KVK Day 2",
       "start": "2026-09-08",
       "end": "2026-09-09"
     },
@@ -492,9 +492,9 @@
       "end": "2026-09-21"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-09-14",
-      "end": "2026-09-28"
+      "end": "2026-09-21"
     },
     {
       "name": "Swordland Showdown",
@@ -507,14 +507,14 @@
       "end": "2026-09-20"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
       "start": "2026-09-14",
       "end": "2026-09-21"
     },
     {
-      "name": "Alliance Brawl Event",
+      "name": "Hero Rally",
       "start": "2026-09-14",
-      "end": "2026-09-21"
+      "end": "2026-09-28"
     },
     {
       "name": "Sanctuary Battle",
