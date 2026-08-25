@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-08-25T00:58:48Z",
+  "_generatedAt": "2026-08-25T04:33:34Z",
   "events": [
     {
       "name": "KVK Day 2",
@@ -42,11 +42,6 @@
       "end": "2026-08-19"
     },
     {
-      "name": "Alliance Mobilization",
-      "start": "2026-08-17",
-      "end": "2026-08-23"
-    },
-    {
       "name": "Swordland Showdown",
       "start": "2026-08-17",
       "end": "2026-08-24"
@@ -70,6 +65,11 @@
       "name": "Alliance Championship Event",
       "start": "2026-08-17",
       "end": "2026-08-24"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-08-17",
+      "end": "2026-08-23"
     },
     {
       "name": "Sanctuary Battle",
@@ -122,16 +122,6 @@
       "end": "2026-09-02"
     },
     {
-      "name": "Alliance Mobilization",
-      "start": "2026-08-31",
-      "end": "2026-09-06"
-    },
-    {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-08-31",
-      "end": "2026-09-06"
-    },
-    {
       "name": "Swordland Showdown",
       "start": "2026-08-31",
       "end": "2026-09-07"
@@ -147,14 +137,24 @@
       "end": "2026-09-07"
     },
     {
-      "name": "Sanctuary Battle",
-      "start": "2026-09-01",
-      "end": "2026-09-05"
+      "name": "Tri-Alliance Clash",
+      "start": "2026-08-31",
+      "end": "2026-09-06"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-08-31",
+      "end": "2026-09-06"
     },
     {
       "name": "Fishing Tournament",
       "start": "2026-09-01",
       "end": "2026-09-04"
+    },
+    {
+      "name": "Sanctuary Battle",
+      "start": "2026-09-01",
+      "end": "2026-09-05"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -222,11 +222,6 @@
       "end": "2026-09-16"
     },
     {
-      "name": "Alliance Mobilization",
-      "start": "2026-09-14",
-      "end": "2026-09-20"
-    },
-    {
       "name": "Swordland Showdown",
       "start": "2026-09-14",
       "end": "2026-09-21"
@@ -250,6 +245,11 @@
       "name": "Alliance Championship Event",
       "start": "2026-09-14",
       "end": "2026-09-21"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-09-14",
+      "end": "2026-09-20"
     },
     {
       "name": "Sanctuary Battle",
@@ -302,16 +302,6 @@
       "end": "2026-09-30"
     },
     {
-      "name": "Alliance Mobilization",
-      "start": "2026-09-28",
-      "end": "2026-10-04"
-    },
-    {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-09-28",
-      "end": "2026-10-04"
-    },
-    {
       "name": "Swordland Showdown",
       "start": "2026-09-28",
       "end": "2026-10-05"
@@ -327,14 +317,24 @@
       "end": "2026-10-05"
     },
     {
-      "name": "Sanctuary Battle",
-      "start": "2026-09-29",
-      "end": "2026-10-03"
+      "name": "Tri-Alliance Clash",
+      "start": "2026-09-28",
+      "end": "2026-10-04"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-09-28",
+      "end": "2026-10-04"
     },
     {
       "name": "Fishing Tournament",
       "start": "2026-09-29",
       "end": "2026-10-02"
+    },
+    {
+      "name": "Sanctuary Battle",
+      "start": "2026-09-29",
+      "end": "2026-10-03"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -402,11 +402,6 @@
       "end": "2026-10-14"
     },
     {
-      "name": "Alliance Mobilization",
-      "start": "2026-10-12",
-      "end": "2026-10-18"
-    },
-    {
       "name": "Swordland Showdown",
       "start": "2026-10-12",
       "end": "2026-10-19"
@@ -430,6 +425,11 @@
       "name": "Alliance Championship Event",
       "start": "2026-10-12",
       "end": "2026-10-19"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-10-12",
+      "end": "2026-10-18"
     },
     {
       "name": "Sanctuary Battle",
@@ -482,16 +482,6 @@
       "end": "2026-10-28"
     },
     {
-      "name": "Alliance Mobilization",
-      "start": "2026-10-26",
-      "end": "2026-11-01"
-    },
-    {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-10-26",
-      "end": "2026-11-01"
-    },
-    {
       "name": "Swordland Showdown",
       "start": "2026-10-26",
       "end": "2026-11-02"
@@ -507,14 +497,24 @@
       "end": "2026-11-02"
     },
     {
-      "name": "Sanctuary Battle",
-      "start": "2026-10-27",
-      "end": "2026-10-31"
+      "name": "Tri-Alliance Clash",
+      "start": "2026-10-26",
+      "end": "2026-11-01"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-10-26",
+      "end": "2026-11-01"
     },
     {
       "name": "Fishing Tournament",
       "start": "2026-10-27",
       "end": "2026-10-30"
+    },
+    {
+      "name": "Sanctuary Battle",
+      "start": "2026-10-27",
+      "end": "2026-10-31"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
