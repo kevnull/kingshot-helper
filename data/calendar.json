@@ -1,11 +1,6 @@
 {
-  "_generatedAt": "2026-09-23T22:37:57Z",
+  "_generatedAt": "2026-09-24T02:50:43Z",
   "events": [
-    {
-      "name": "KVK Day 3",
-      "start": "2026-09-09",
-      "end": "2026-09-10"
-    },
     {
       "name": "Kvk Day 4",
       "start": "2026-09-10",
@@ -27,17 +22,17 @@
       "end": "2026-09-16"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-09-14",
-      "end": "2026-09-21"
-    },
-    {
       "name": "Alliance Mobilization",
       "start": "2026-09-14",
       "end": "2026-09-20"
     },
     {
       "name": "Alliance Brawl Event",
+      "start": "2026-09-14",
+      "end": "2026-09-21"
+    },
+    {
+      "name": "Merchant Empire Event",
       "start": "2026-09-14",
       "end": "2026-09-21"
     },
@@ -52,7 +47,7 @@
       "end": "2026-09-21"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Championship Event",
       "start": "2026-09-14",
       "end": "2026-09-21"
     },
@@ -107,17 +102,12 @@
       "end": "2026-09-30"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Mobilization",
       "start": "2026-09-28",
       "end": "2026-10-04"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-09-28",
-      "end": "2026-10-05"
-    },
-    {
-      "name": "Alliance Mobilization",
+      "name": "Tri-Alliance Clash",
       "start": "2026-09-28",
       "end": "2026-10-04"
     },
@@ -132,14 +122,19 @@
       "end": "2026-10-05"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-09-29",
-      "end": "2026-10-02"
+      "name": "Alliance Championship Event",
+      "start": "2026-09-28",
+      "end": "2026-10-05"
     },
     {
       "name": "Sanctuary Battle",
       "start": "2026-09-29",
       "end": "2026-10-03"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-09-29",
+      "end": "2026-10-02"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -167,11 +162,6 @@
       "end": "2026-10-06"
     },
     {
-      "name": "KVK Day 2",
-      "start": "2026-10-06",
-      "end": "2026-10-07"
-    },
-    {
       "name": "Eternity's Reach",
       "start": "2026-10-06",
       "end": "2026-10-07"
@@ -180,6 +170,11 @@
       "name": "Vikings Vengeance",
       "start": "2026-10-06",
       "end": "2026-10-09"
+    },
+    {
+      "name": "KVK Day 2",
+      "start": "2026-10-06",
+      "end": "2026-10-07"
     },
     {
       "name": "KVK Day 3",
@@ -207,17 +202,17 @@
       "end": "2026-10-14"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-10-12",
-      "end": "2026-10-19"
-    },
-    {
       "name": "Alliance Mobilization",
       "start": "2026-10-12",
       "end": "2026-10-18"
     },
     {
       "name": "Alliance Brawl Event",
+      "start": "2026-10-12",
+      "end": "2026-10-19"
+    },
+    {
+      "name": "Merchant Empire Event",
       "start": "2026-10-12",
       "end": "2026-10-19"
     },
@@ -232,7 +227,7 @@
       "end": "2026-10-19"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Championship Event",
       "start": "2026-10-12",
       "end": "2026-10-19"
     },
@@ -287,17 +282,12 @@
       "end": "2026-10-28"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Mobilization",
       "start": "2026-10-26",
       "end": "2026-11-01"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-10-26",
-      "end": "2026-11-02"
-    },
-    {
-      "name": "Alliance Mobilization",
+      "name": "Tri-Alliance Clash",
       "start": "2026-10-26",
       "end": "2026-11-01"
     },
@@ -312,14 +302,19 @@
       "end": "2026-11-02"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-10-27",
-      "end": "2026-10-30"
+      "name": "Alliance Championship Event",
+      "start": "2026-10-26",
+      "end": "2026-11-02"
     },
     {
       "name": "Sanctuary Battle",
       "start": "2026-10-27",
       "end": "2026-10-31"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-10-27",
+      "end": "2026-10-30"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -347,11 +342,6 @@
       "end": "2026-11-03"
     },
     {
-      "name": "KVK Day 2",
-      "start": "2026-11-03",
-      "end": "2026-11-04"
-    },
-    {
       "name": "Eternity's Reach",
       "start": "2026-11-03",
       "end": "2026-11-04"
@@ -360,6 +350,11 @@
       "name": "Vikings Vengeance",
       "start": "2026-11-03",
       "end": "2026-11-06"
+    },
+    {
+      "name": "KVK Day 2",
+      "start": "2026-11-03",
+      "end": "2026-11-04"
     },
     {
       "name": "KVK Day 3",
@@ -387,17 +382,17 @@
       "end": "2026-11-11"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
-    },
-    {
       "name": "Alliance Mobilization",
       "start": "2026-11-09",
       "end": "2026-11-15"
     },
     {
       "name": "Alliance Brawl Event",
+      "start": "2026-11-09",
+      "end": "2026-11-16"
+    },
+    {
+      "name": "Merchant Empire Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -412,7 +407,7 @@
       "end": "2026-11-16"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Championship Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -467,17 +462,12 @@
       "end": "2026-11-25"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Mobilization",
       "start": "2026-11-23",
       "end": "2026-11-29"
     },
     {
-      "name": "Alliance Championship Event",
-      "start": "2026-11-23",
-      "end": "2026-11-30"
-    },
-    {
-      "name": "Alliance Mobilization",
+      "name": "Tri-Alliance Clash",
       "start": "2026-11-23",
       "end": "2026-11-29"
     },
@@ -492,14 +482,19 @@
       "end": "2026-11-30"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-11-24",
-      "end": "2026-11-27"
+      "name": "Alliance Championship Event",
+      "start": "2026-11-23",
+      "end": "2026-11-30"
     },
     {
       "name": "Sanctuary Battle",
       "start": "2026-11-24",
       "end": "2026-11-28"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-11-24",
+      "end": "2026-11-27"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -527,11 +522,6 @@
       "end": "2026-12-01"
     },
     {
-      "name": "KVK Day 2",
-      "start": "2026-12-01",
-      "end": "2026-12-02"
-    },
-    {
       "name": "Eternity's Reach",
       "start": "2026-12-01",
       "end": "2026-12-02"
@@ -542,9 +532,19 @@
       "end": "2026-12-04"
     },
     {
+      "name": "KVK Day 2",
+      "start": "2026-12-01",
+      "end": "2026-12-02"
+    },
+    {
       "name": "KVK Day 3",
       "start": "2026-12-02",
       "end": "2026-12-03"
+    },
+    {
+      "name": "Kvk Day 4",
+      "start": "2026-12-03",
+      "end": "2026-12-04"
     }
   ]
 }
