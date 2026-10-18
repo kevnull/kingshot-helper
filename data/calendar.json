@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-10-18T15:16:14Z",
+  "_generatedAt": "2026-10-18T18:24:48Z",
   "events": [
     {
       "name": "Hall of Heroes",
@@ -57,9 +57,9 @@
       "end": "2026-10-14"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Swordland Showdown",
       "start": "2026-10-12",
-      "end": "2026-10-18"
+      "end": "2026-10-19"
     },
     {
       "name": "Merchant Empire Event",
@@ -67,14 +67,14 @@
       "end": "2026-10-19"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-10-12",
+      "end": "2026-10-18"
+    },
+    {
       "name": "Hero Rally",
       "start": "2026-10-12",
       "end": "2026-10-26"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-10-12",
-      "end": "2026-10-19"
     },
     {
       "name": "Alliance Brawl Event",
@@ -82,7 +82,7 @@
       "end": "2026-10-19"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-10-12",
       "end": "2026-10-19"
     },
@@ -137,6 +137,16 @@
       "end": "2026-10-28"
     },
     {
+      "name": "Swordland Showdown",
+      "start": "2026-10-26",
+      "end": "2026-11-02"
+    },
+    {
+      "name": "Tri-Alliance Clash",
+      "start": "2026-10-26",
+      "end": "2026-11-01"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-10-26",
       "end": "2026-11-01"
@@ -148,16 +158,6 @@
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2026-10-26",
-      "end": "2026-11-02"
-    },
-    {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-10-26",
-      "end": "2026-11-01"
-    },
-    {
-      "name": "Swordland Showdown",
       "start": "2026-10-26",
       "end": "2026-11-02"
     },
@@ -237,9 +237,9 @@
       "end": "2026-11-11"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Swordland Showdown",
       "start": "2026-11-09",
-      "end": "2026-11-15"
+      "end": "2026-11-16"
     },
     {
       "name": "Merchant Empire Event",
@@ -247,14 +247,14 @@
       "end": "2026-11-16"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-11-09",
+      "end": "2026-11-15"
+    },
+    {
       "name": "Hero Rally",
       "start": "2026-11-09",
       "end": "2026-11-23"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
     },
     {
       "name": "Alliance Brawl Event",
@@ -262,7 +262,7 @@
       "end": "2026-11-16"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -317,6 +317,16 @@
       "end": "2026-11-25"
     },
     {
+      "name": "Swordland Showdown",
+      "start": "2026-11-23",
+      "end": "2026-11-30"
+    },
+    {
+      "name": "Tri-Alliance Clash",
+      "start": "2026-11-23",
+      "end": "2026-11-29"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-11-23",
       "end": "2026-11-29"
@@ -328,16 +338,6 @@
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2026-11-23",
-      "end": "2026-11-30"
-    },
-    {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-11-23",
-      "end": "2026-11-29"
-    },
-    {
-      "name": "Swordland Showdown",
       "start": "2026-11-23",
       "end": "2026-11-30"
     },
@@ -417,9 +417,9 @@
       "end": "2026-12-09"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Swordland Showdown",
       "start": "2026-12-07",
-      "end": "2026-12-13"
+      "end": "2026-12-14"
     },
     {
       "name": "Merchant Empire Event",
@@ -427,14 +427,14 @@
       "end": "2026-12-14"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-12-07",
+      "end": "2026-12-13"
+    },
+    {
       "name": "Hero Rally",
       "start": "2026-12-07",
       "end": "2026-12-21"
-    },
-    {
-      "name": "Alliance Championship Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
     },
     {
       "name": "Alliance Brawl Event",
@@ -442,7 +442,7 @@
       "end": "2026-12-14"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -497,6 +497,16 @@
       "end": "2026-12-23"
     },
     {
+      "name": "Swordland Showdown",
+      "start": "2026-12-21",
+      "end": "2026-12-28"
+    },
+    {
+      "name": "Tri-Alliance Clash",
+      "start": "2026-12-21",
+      "end": "2026-12-27"
+    },
+    {
       "name": "Alliance Mobilization",
       "start": "2026-12-21",
       "end": "2026-12-27"
@@ -508,16 +518,6 @@
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2026-12-21",
-      "end": "2026-12-28"
-    },
-    {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-12-21",
-      "end": "2026-12-27"
-    },
-    {
-      "name": "Swordland Showdown",
       "start": "2026-12-21",
       "end": "2026-12-28"
     },
