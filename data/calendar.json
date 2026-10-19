@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-10-19T09:31:19Z",
+  "_generatedAt": "2026-10-19T18:14:19Z",
   "events": [
     {
       "name": "KVK Day 1",
@@ -47,17 +47,7 @@
       "end": "2026-10-14"
     },
     {
-      "name": "Merchant Empire Event",
-      "start": "2026-10-12",
-      "end": "2026-10-19"
-    },
-    {
       "name": "Alliance Championship Event",
-      "start": "2026-10-12",
-      "end": "2026-10-19"
-    },
-    {
-      "name": "Swordland Showdown",
       "start": "2026-10-12",
       "end": "2026-10-19"
     },
@@ -67,9 +57,19 @@
       "end": "2026-10-19"
     },
     {
+      "name": "Swordland Showdown",
+      "start": "2026-10-12",
+      "end": "2026-10-19"
+    },
+    {
       "name": "Hero Rally",
       "start": "2026-10-12",
       "end": "2026-10-26"
+    },
+    {
+      "name": "Merchant Empire Event",
+      "start": "2026-10-12",
+      "end": "2026-10-19"
     },
     {
       "name": "Alliance Mobilization",
@@ -127,11 +127,6 @@
       "end": "2026-10-28"
     },
     {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-10-26",
-      "end": "2026-11-01"
-    },
-    {
       "name": "Alliance Championship Event",
       "start": "2026-10-26",
       "end": "2026-11-02"
@@ -140,6 +135,11 @@
       "name": "Swordland Showdown",
       "start": "2026-10-26",
       "end": "2026-11-02"
+    },
+    {
+      "name": "Tri-Alliance Clash",
+      "start": "2026-10-26",
+      "end": "2026-11-01"
     },
     {
       "name": "Hero Rally",
@@ -172,14 +172,14 @@
       "end": "2026-11-02"
     },
     {
-      "name": "Officer project",
-      "start": "2026-11-01",
-      "end": "2026-11-03"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-11-01",
       "end": "2026-11-04"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-11-01",
+      "end": "2026-11-03"
     },
     {
       "name": "KVK Day 1",
@@ -227,17 +227,7 @@
       "end": "2026-11-11"
     },
     {
-      "name": "Merchant Empire Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
-    },
-    {
       "name": "Alliance Championship Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
-    },
-    {
-      "name": "Swordland Showdown",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -247,9 +237,19 @@
       "end": "2026-11-16"
     },
     {
+      "name": "Swordland Showdown",
+      "start": "2026-11-09",
+      "end": "2026-11-16"
+    },
+    {
       "name": "Hero Rally",
       "start": "2026-11-09",
       "end": "2026-11-23"
+    },
+    {
+      "name": "Merchant Empire Event",
+      "start": "2026-11-09",
+      "end": "2026-11-16"
     },
     {
       "name": "Alliance Mobilization",
@@ -307,11 +307,6 @@
       "end": "2026-11-25"
     },
     {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-11-23",
-      "end": "2026-11-29"
-    },
-    {
       "name": "Alliance Championship Event",
       "start": "2026-11-23",
       "end": "2026-11-30"
@@ -320,6 +315,11 @@
       "name": "Swordland Showdown",
       "start": "2026-11-23",
       "end": "2026-11-30"
+    },
+    {
+      "name": "Tri-Alliance Clash",
+      "start": "2026-11-23",
+      "end": "2026-11-29"
     },
     {
       "name": "Hero Rally",
@@ -352,14 +352,14 @@
       "end": "2026-11-30"
     },
     {
-      "name": "Officer project",
-      "start": "2026-11-29",
-      "end": "2026-12-01"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-11-29",
       "end": "2026-12-02"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-11-29",
+      "end": "2026-12-01"
     },
     {
       "name": "KVK Day 1",
@@ -407,17 +407,7 @@
       "end": "2026-12-09"
     },
     {
-      "name": "Merchant Empire Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
-    },
-    {
       "name": "Alliance Championship Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
-    },
-    {
-      "name": "Swordland Showdown",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -427,9 +417,19 @@
       "end": "2026-12-14"
     },
     {
+      "name": "Swordland Showdown",
+      "start": "2026-12-07",
+      "end": "2026-12-14"
+    },
+    {
       "name": "Hero Rally",
       "start": "2026-12-07",
       "end": "2026-12-21"
+    },
+    {
+      "name": "Merchant Empire Event",
+      "start": "2026-12-07",
+      "end": "2026-12-14"
     },
     {
       "name": "Alliance Mobilization",
@@ -487,11 +487,6 @@
       "end": "2026-12-23"
     },
     {
-      "name": "Tri-Alliance Clash",
-      "start": "2026-12-21",
-      "end": "2026-12-27"
-    },
-    {
       "name": "Alliance Championship Event",
       "start": "2026-12-21",
       "end": "2026-12-28"
@@ -500,6 +495,11 @@
       "name": "Swordland Showdown",
       "start": "2026-12-21",
       "end": "2026-12-28"
+    },
+    {
+      "name": "Tri-Alliance Clash",
+      "start": "2026-12-21",
+      "end": "2026-12-27"
     },
     {
       "name": "Hero Rally",
@@ -532,14 +532,14 @@
       "end": "2026-12-28"
     },
     {
-      "name": "Officer project",
-      "start": "2026-12-27",
-      "end": "2026-12-29"
-    },
-    {
       "name": "Hall of Heroes",
       "start": "2026-12-27",
       "end": "2026-12-30"
+    },
+    {
+      "name": "Officer project",
+      "start": "2026-12-27",
+      "end": "2026-12-29"
     },
     {
       "name": "KVK Day 1",
