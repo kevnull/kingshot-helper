@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-10-24T18:32:21Z",
+  "_generatedAt": "2026-10-24T22:12:12Z",
   "events": [
     {
       "name": "KvK Castle Battle",
@@ -12,12 +12,7 @@
       "end": "2026-10-14"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-10-12",
-      "end": "2026-10-26"
-    },
-    {
-      "name": "Alliance Championship Event",
+      "name": "Merchant Empire Event",
       "start": "2026-10-12",
       "end": "2026-10-19"
     },
@@ -27,12 +22,7 @@
       "end": "2026-10-19"
     },
     {
-      "name": "Merchant Empire Event",
-      "start": "2026-10-12",
-      "end": "2026-10-19"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-10-12",
       "end": "2026-10-19"
     },
@@ -40,6 +30,16 @@
       "name": "Alliance Mobilization",
       "start": "2026-10-12",
       "end": "2026-10-18"
+    },
+    {
+      "name": "Swordland Showdown",
+      "start": "2026-10-12",
+      "end": "2026-10-19"
+    },
+    {
+      "name": "Hero Rally",
+      "start": "2026-10-12",
+      "end": "2026-10-26"
     },
     {
       "name": "Sanctuary Battle",
@@ -92,17 +92,12 @@
       "end": "2026-10-28"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-10-26",
-      "end": "2026-11-09"
-    },
-    {
       "name": "Alliance Championship Event",
       "start": "2026-10-26",
       "end": "2026-11-02"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Mobilization",
       "start": "2026-10-26",
       "end": "2026-11-01"
     },
@@ -112,7 +107,12 @@
       "end": "2026-11-02"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Hero Rally",
+      "start": "2026-10-26",
+      "end": "2026-11-09"
+    },
+    {
+      "name": "Tri-Alliance Clash",
       "start": "2026-10-26",
       "end": "2026-11-01"
     },
@@ -137,14 +137,14 @@
       "end": "2026-11-02"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-11-01",
-      "end": "2026-11-04"
-    },
-    {
       "name": "Officer project",
       "start": "2026-11-01",
       "end": "2026-11-03"
+    },
+    {
+      "name": "Hall of Heroes",
+      "start": "2026-11-01",
+      "end": "2026-11-04"
     },
     {
       "name": "KVK Day 1",
@@ -192,12 +192,7 @@
       "end": "2026-11-11"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-11-09",
-      "end": "2026-11-23"
-    },
-    {
-      "name": "Alliance Championship Event",
+      "name": "Merchant Empire Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -207,12 +202,7 @@
       "end": "2026-11-16"
     },
     {
-      "name": "Merchant Empire Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -220,6 +210,16 @@
       "name": "Alliance Mobilization",
       "start": "2026-11-09",
       "end": "2026-11-15"
+    },
+    {
+      "name": "Swordland Showdown",
+      "start": "2026-11-09",
+      "end": "2026-11-16"
+    },
+    {
+      "name": "Hero Rally",
+      "start": "2026-11-09",
+      "end": "2026-11-23"
     },
     {
       "name": "Sanctuary Battle",
@@ -272,17 +272,12 @@
       "end": "2026-11-25"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-11-23",
-      "end": "2026-12-07"
-    },
-    {
       "name": "Alliance Championship Event",
       "start": "2026-11-23",
       "end": "2026-11-30"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Mobilization",
       "start": "2026-11-23",
       "end": "2026-11-29"
     },
@@ -292,7 +287,12 @@
       "end": "2026-11-30"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Hero Rally",
+      "start": "2026-11-23",
+      "end": "2026-12-07"
+    },
+    {
+      "name": "Tri-Alliance Clash",
       "start": "2026-11-23",
       "end": "2026-11-29"
     },
@@ -317,14 +317,14 @@
       "end": "2026-11-30"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-11-29",
-      "end": "2026-12-02"
-    },
-    {
       "name": "Officer project",
       "start": "2026-11-29",
       "end": "2026-12-01"
+    },
+    {
+      "name": "Hall of Heroes",
+      "start": "2026-11-29",
+      "end": "2026-12-02"
     },
     {
       "name": "KVK Day 1",
@@ -372,12 +372,7 @@
       "end": "2026-12-09"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-12-07",
-      "end": "2026-12-21"
-    },
-    {
-      "name": "Alliance Championship Event",
+      "name": "Merchant Empire Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -387,12 +382,7 @@
       "end": "2026-12-14"
     },
     {
-      "name": "Merchant Empire Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
-    },
-    {
-      "name": "Swordland Showdown",
+      "name": "Alliance Championship Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -400,6 +390,16 @@
       "name": "Alliance Mobilization",
       "start": "2026-12-07",
       "end": "2026-12-13"
+    },
+    {
+      "name": "Swordland Showdown",
+      "start": "2026-12-07",
+      "end": "2026-12-14"
+    },
+    {
+      "name": "Hero Rally",
+      "start": "2026-12-07",
+      "end": "2026-12-21"
     },
     {
       "name": "Sanctuary Battle",
@@ -452,17 +452,12 @@
       "end": "2026-12-23"
     },
     {
-      "name": "Hero Rally",
-      "start": "2026-12-21",
-      "end": "2027-01-04"
-    },
-    {
       "name": "Alliance Championship Event",
       "start": "2026-12-21",
       "end": "2026-12-28"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Alliance Mobilization",
       "start": "2026-12-21",
       "end": "2026-12-27"
     },
@@ -472,7 +467,12 @@
       "end": "2026-12-28"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Hero Rally",
+      "start": "2026-12-21",
+      "end": "2027-01-04"
+    },
+    {
+      "name": "Tri-Alliance Clash",
       "start": "2026-12-21",
       "end": "2026-12-27"
     },
@@ -497,14 +497,14 @@
       "end": "2026-12-28"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-12-27",
-      "end": "2026-12-30"
-    },
-    {
       "name": "Officer project",
       "start": "2026-12-27",
       "end": "2026-12-29"
+    },
+    {
+      "name": "Hall of Heroes",
+      "start": "2026-12-27",
+      "end": "2026-12-30"
     },
     {
       "name": "KVK Day 1",
