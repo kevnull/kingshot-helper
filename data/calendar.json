@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-11-15T15:14:15Z",
+  "_generatedAt": "2026-11-15T20:44:20Z",
   "events": [
     {
       "name": "Hall of Heroes",
@@ -57,9 +57,9 @@
       "end": "2026-11-11"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-11-09",
-      "end": "2026-11-23"
+      "end": "2026-11-16"
     },
     {
       "name": "Swordland Showdown",
@@ -72,17 +72,17 @@
       "end": "2026-11-15"
     },
     {
+      "name": "Hero Rally",
+      "start": "2026-11-09",
+      "end": "2026-11-23"
+    },
+    {
       "name": "Alliance Brawl Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
-    },
-    {
-      "name": "Merchant Empire Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -137,9 +137,9 @@
       "end": "2026-11-25"
     },
     {
-      "name": "Hero Rally",
+      "name": "Tri-Alliance Clash",
       "start": "2026-11-23",
-      "end": "2026-12-07"
+      "end": "2026-11-29"
     },
     {
       "name": "Swordland Showdown",
@@ -152,9 +152,9 @@
       "end": "2026-11-29"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Hero Rally",
       "start": "2026-11-23",
-      "end": "2026-11-29"
+      "end": "2026-12-07"
     },
     {
       "name": "Alliance Championship Event",
@@ -237,9 +237,9 @@
       "end": "2026-12-09"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2026-12-07",
-      "end": "2026-12-21"
+      "end": "2026-12-14"
     },
     {
       "name": "Swordland Showdown",
@@ -252,17 +252,17 @@
       "end": "2026-12-13"
     },
     {
+      "name": "Hero Rally",
+      "start": "2026-12-07",
+      "end": "2026-12-21"
+    },
+    {
       "name": "Alliance Brawl Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
-    },
-    {
-      "name": "Merchant Empire Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -317,9 +317,9 @@
       "end": "2026-12-23"
     },
     {
-      "name": "Hero Rally",
+      "name": "Tri-Alliance Clash",
       "start": "2026-12-21",
-      "end": "2027-01-04"
+      "end": "2026-12-27"
     },
     {
       "name": "Swordland Showdown",
@@ -332,9 +332,9 @@
       "end": "2026-12-27"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Hero Rally",
       "start": "2026-12-21",
-      "end": "2026-12-27"
+      "end": "2027-01-04"
     },
     {
       "name": "Alliance Championship Event",
@@ -417,9 +417,9 @@
       "end": "2027-01-06"
     },
     {
-      "name": "Hero Rally",
+      "name": "Merchant Empire Event",
       "start": "2027-01-04",
-      "end": "2027-01-18"
+      "end": "2027-01-11"
     },
     {
       "name": "Swordland Showdown",
@@ -432,17 +432,17 @@
       "end": "2027-01-10"
     },
     {
+      "name": "Hero Rally",
+      "start": "2027-01-04",
+      "end": "2027-01-18"
+    },
+    {
       "name": "Alliance Brawl Event",
       "start": "2027-01-04",
       "end": "2027-01-11"
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2027-01-04",
-      "end": "2027-01-11"
-    },
-    {
-      "name": "Merchant Empire Event",
       "start": "2027-01-04",
       "end": "2027-01-11"
     },
@@ -497,9 +497,9 @@
       "end": "2027-01-20"
     },
     {
-      "name": "Hero Rally",
+      "name": "Tri-Alliance Clash",
       "start": "2027-01-18",
-      "end": "2027-02-01"
+      "end": "2027-01-24"
     },
     {
       "name": "Swordland Showdown",
@@ -512,9 +512,9 @@
       "end": "2027-01-24"
     },
     {
-      "name": "Tri-Alliance Clash",
+      "name": "Hero Rally",
       "start": "2027-01-18",
-      "end": "2027-01-24"
+      "end": "2027-02-01"
     },
     {
       "name": "Alliance Championship Event",
