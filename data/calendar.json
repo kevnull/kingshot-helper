@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-11-18T05:40:46Z",
+  "_generatedAt": "2026-11-18T16:53:25Z",
   "events": [
     {
       "name": "KVK Day 3",
@@ -27,7 +27,22 @@
       "end": "2026-11-11"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-11-09",
+      "end": "2026-11-15"
+    },
+    {
       "name": "Alliance Championship Event",
+      "start": "2026-11-09",
+      "end": "2026-11-16"
+    },
+    {
+      "name": "Alliance Brawl Event",
+      "start": "2026-11-09",
+      "end": "2026-11-16"
+    },
+    {
+      "name": "Merchant Empire Event",
       "start": "2026-11-09",
       "end": "2026-11-16"
     },
@@ -40,21 +55,6 @@
       "name": "Hero Rally",
       "start": "2026-11-09",
       "end": "2026-11-23"
-    },
-    {
-      "name": "Alliance Brawl Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-11-09",
-      "end": "2026-11-15"
-    },
-    {
-      "name": "Merchant Empire Event",
-      "start": "2026-11-09",
-      "end": "2026-11-16"
     },
     {
       "name": "Sanctuary Battle",
@@ -82,14 +82,14 @@
       "end": "2026-11-23"
     },
     {
-      "name": "Eternity's Reach",
-      "start": "2026-11-17",
-      "end": "2026-11-18"
-    },
-    {
       "name": "Vikings Vengeance",
       "start": "2026-11-17",
       "end": "2026-11-20"
+    },
+    {
+      "name": "Eternity's Reach",
+      "start": "2026-11-17",
+      "end": "2026-11-18"
     },
     {
       "name": "All Out Event",
@@ -105,6 +105,11 @@
       "name": "Hall of Heroes",
       "start": "2026-11-22",
       "end": "2026-11-25"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-11-23",
+      "end": "2026-11-29"
     },
     {
       "name": "Alliance Championship Event",
@@ -125,11 +130,6 @@
       "name": "Hero Rally",
       "start": "2026-11-23",
       "end": "2026-12-07"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-11-23",
-      "end": "2026-11-29"
     },
     {
       "name": "Sanctuary Battle",
@@ -167,6 +167,11 @@
       "end": "2026-12-01"
     },
     {
+      "name": "Vikings Vengeance",
+      "start": "2026-12-01",
+      "end": "2026-12-04"
+    },
+    {
       "name": "KVK Day 2",
       "start": "2026-12-01",
       "end": "2026-12-02"
@@ -175,11 +180,6 @@
       "name": "Eternity's Reach",
       "start": "2026-12-01",
       "end": "2026-12-02"
-    },
-    {
-      "name": "Vikings Vengeance",
-      "start": "2026-12-01",
-      "end": "2026-12-04"
     },
     {
       "name": "KVK Day 3",
@@ -207,7 +207,22 @@
       "end": "2026-12-09"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2026-12-07",
+      "end": "2026-12-13"
+    },
+    {
       "name": "Alliance Championship Event",
+      "start": "2026-12-07",
+      "end": "2026-12-14"
+    },
+    {
+      "name": "Alliance Brawl Event",
+      "start": "2026-12-07",
+      "end": "2026-12-14"
+    },
+    {
+      "name": "Merchant Empire Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -220,21 +235,6 @@
       "name": "Hero Rally",
       "start": "2026-12-07",
       "end": "2026-12-21"
-    },
-    {
-      "name": "Alliance Brawl Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-12-07",
-      "end": "2026-12-13"
-    },
-    {
-      "name": "Merchant Empire Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
     },
     {
       "name": "Sanctuary Battle",
@@ -262,14 +262,14 @@
       "end": "2026-12-21"
     },
     {
-      "name": "Eternity's Reach",
-      "start": "2026-12-15",
-      "end": "2026-12-16"
-    },
-    {
       "name": "Vikings Vengeance",
       "start": "2026-12-15",
       "end": "2026-12-18"
+    },
+    {
+      "name": "Eternity's Reach",
+      "start": "2026-12-15",
+      "end": "2026-12-16"
     },
     {
       "name": "All Out Event",
@@ -285,6 +285,11 @@
       "name": "Hall of Heroes",
       "start": "2026-12-20",
       "end": "2026-12-23"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2026-12-21",
+      "end": "2026-12-27"
     },
     {
       "name": "Alliance Championship Event",
@@ -305,11 +310,6 @@
       "name": "Hero Rally",
       "start": "2026-12-21",
       "end": "2027-01-04"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2026-12-21",
-      "end": "2026-12-27"
     },
     {
       "name": "Sanctuary Battle",
@@ -347,6 +347,11 @@
       "end": "2026-12-29"
     },
     {
+      "name": "Vikings Vengeance",
+      "start": "2026-12-29",
+      "end": "2027-01-01"
+    },
+    {
       "name": "KVK Day 2",
       "start": "2026-12-29",
       "end": "2026-12-30"
@@ -355,11 +360,6 @@
       "name": "Eternity's Reach",
       "start": "2026-12-29",
       "end": "2026-12-30"
-    },
-    {
-      "name": "Vikings Vengeance",
-      "start": "2026-12-29",
-      "end": "2027-01-01"
     },
     {
       "name": "KVK Day 3",
@@ -387,7 +387,22 @@
       "end": "2027-01-06"
     },
     {
+      "name": "Alliance Mobilization",
+      "start": "2027-01-04",
+      "end": "2027-01-10"
+    },
+    {
       "name": "Alliance Championship Event",
+      "start": "2027-01-04",
+      "end": "2027-01-11"
+    },
+    {
+      "name": "Alliance Brawl Event",
+      "start": "2027-01-04",
+      "end": "2027-01-11"
+    },
+    {
+      "name": "Merchant Empire Event",
       "start": "2027-01-04",
       "end": "2027-01-11"
     },
@@ -400,21 +415,6 @@
       "name": "Hero Rally",
       "start": "2027-01-04",
       "end": "2027-01-18"
-    },
-    {
-      "name": "Alliance Brawl Event",
-      "start": "2027-01-04",
-      "end": "2027-01-11"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2027-01-04",
-      "end": "2027-01-10"
-    },
-    {
-      "name": "Merchant Empire Event",
-      "start": "2027-01-04",
-      "end": "2027-01-11"
     },
     {
       "name": "Sanctuary Battle",
@@ -442,14 +442,14 @@
       "end": "2027-01-18"
     },
     {
-      "name": "Eternity's Reach",
-      "start": "2027-01-12",
-      "end": "2027-01-13"
-    },
-    {
       "name": "Vikings Vengeance",
       "start": "2027-01-12",
       "end": "2027-01-15"
+    },
+    {
+      "name": "Eternity's Reach",
+      "start": "2027-01-12",
+      "end": "2027-01-13"
     },
     {
       "name": "All Out Event",
@@ -465,6 +465,11 @@
       "name": "Hall of Heroes",
       "start": "2027-01-17",
       "end": "2027-01-20"
+    },
+    {
+      "name": "Alliance Mobilization",
+      "start": "2027-01-18",
+      "end": "2027-01-24"
     },
     {
       "name": "Alliance Championship Event",
@@ -485,11 +490,6 @@
       "name": "Hero Rally",
       "start": "2027-01-18",
       "end": "2027-02-01"
-    },
-    {
-      "name": "Alliance Mobilization",
-      "start": "2027-01-18",
-      "end": "2027-01-24"
     },
     {
       "name": "Sanctuary Battle",
@@ -527,6 +527,11 @@
       "end": "2027-01-26"
     },
     {
+      "name": "Vikings Vengeance",
+      "start": "2027-01-26",
+      "end": "2027-01-29"
+    },
+    {
       "name": "KVK Day 2",
       "start": "2027-01-26",
       "end": "2027-01-27"
@@ -535,11 +540,6 @@
       "name": "Eternity's Reach",
       "start": "2027-01-26",
       "end": "2027-01-27"
-    },
-    {
-      "name": "Vikings Vengeance",
-      "start": "2027-01-26",
-      "end": "2027-01-29"
     },
     {
       "name": "KVK Day 3",
