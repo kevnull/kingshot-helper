@@ -1,5 +1,5 @@
 {
-  "_generatedAt": "2026-11-27T02:36:14Z",
+  "_generatedAt": "2026-11-27T13:25:25Z",
   "events": [
     {
       "name": "Mystic Divination Event",
@@ -47,9 +47,9 @@
       "end": "2026-12-07"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Mobilization",
       "start": "2026-11-23",
-      "end": "2026-11-30"
+      "end": "2026-11-29"
     },
     {
       "name": "Tri-Alliance Clash",
@@ -57,9 +57,9 @@
       "end": "2026-11-29"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Swordland Showdown",
       "start": "2026-11-23",
-      "end": "2026-11-29"
+      "end": "2026-11-30"
     },
     {
       "name": "Alliance Championship Event",
@@ -67,14 +67,14 @@
       "end": "2026-11-30"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-11-24",
-      "end": "2026-11-27"
-    },
-    {
       "name": "Sanctuary Battle",
       "start": "2026-11-24",
       "end": "2026-11-28"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-11-24",
+      "end": "2026-11-27"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -87,14 +87,14 @@
       "end": "2026-11-30"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-11-29",
-      "end": "2026-12-02"
-    },
-    {
       "name": "Officer project",
       "start": "2026-11-29",
       "end": "2026-12-01"
+    },
+    {
+      "name": "Hall of Heroes",
+      "start": "2026-11-29",
+      "end": "2026-12-02"
     },
     {
       "name": "KVK Day 1",
@@ -147,7 +147,7 @@
       "end": "2026-12-21"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Merchant Empire Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -157,17 +157,17 @@
       "end": "2026-12-13"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
+      "start": "2026-12-07",
+      "end": "2026-12-14"
+    },
+    {
+      "name": "Swordland Showdown",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2026-12-07",
-      "end": "2026-12-14"
-    },
-    {
-      "name": "Alliance Brawl Event",
       "start": "2026-12-07",
       "end": "2026-12-14"
     },
@@ -227,9 +227,9 @@
       "end": "2027-01-04"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Mobilization",
       "start": "2026-12-21",
-      "end": "2026-12-28"
+      "end": "2026-12-27"
     },
     {
       "name": "Tri-Alliance Clash",
@@ -237,9 +237,9 @@
       "end": "2026-12-27"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Swordland Showdown",
       "start": "2026-12-21",
-      "end": "2026-12-27"
+      "end": "2026-12-28"
     },
     {
       "name": "Alliance Championship Event",
@@ -247,14 +247,14 @@
       "end": "2026-12-28"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2026-12-22",
-      "end": "2026-12-25"
-    },
-    {
       "name": "Sanctuary Battle",
       "start": "2026-12-22",
       "end": "2026-12-26"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2026-12-22",
+      "end": "2026-12-25"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -267,14 +267,14 @@
       "end": "2026-12-28"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2026-12-27",
-      "end": "2026-12-30"
-    },
-    {
       "name": "Officer project",
       "start": "2026-12-27",
       "end": "2026-12-29"
+    },
+    {
+      "name": "Hall of Heroes",
+      "start": "2026-12-27",
+      "end": "2026-12-30"
     },
     {
       "name": "KVK Day 1",
@@ -327,7 +327,7 @@
       "end": "2027-01-18"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Merchant Empire Event",
       "start": "2027-01-04",
       "end": "2027-01-11"
     },
@@ -337,17 +337,17 @@
       "end": "2027-01-10"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
+      "start": "2027-01-04",
+      "end": "2027-01-11"
+    },
+    {
+      "name": "Swordland Showdown",
       "start": "2027-01-04",
       "end": "2027-01-11"
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2027-01-04",
-      "end": "2027-01-11"
-    },
-    {
-      "name": "Alliance Brawl Event",
       "start": "2027-01-04",
       "end": "2027-01-11"
     },
@@ -407,9 +407,9 @@
       "end": "2027-02-01"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Alliance Mobilization",
       "start": "2027-01-18",
-      "end": "2027-01-25"
+      "end": "2027-01-24"
     },
     {
       "name": "Tri-Alliance Clash",
@@ -417,9 +417,9 @@
       "end": "2027-01-24"
     },
     {
-      "name": "Alliance Mobilization",
+      "name": "Swordland Showdown",
       "start": "2027-01-18",
-      "end": "2027-01-24"
+      "end": "2027-01-25"
     },
     {
       "name": "Alliance Championship Event",
@@ -427,14 +427,14 @@
       "end": "2027-01-25"
     },
     {
-      "name": "Fishing Tournament",
-      "start": "2027-01-19",
-      "end": "2027-01-22"
-    },
-    {
       "name": "Sanctuary Battle",
       "start": "2027-01-19",
       "end": "2027-01-23"
+    },
+    {
+      "name": "Fishing Tournament",
+      "start": "2027-01-19",
+      "end": "2027-01-22"
     },
     {
       "name": "Desert Trial Event / Champion's Way Event",
@@ -447,14 +447,14 @@
       "end": "2027-01-25"
     },
     {
-      "name": "Hall of Heroes",
-      "start": "2027-01-24",
-      "end": "2027-01-27"
-    },
-    {
       "name": "Officer project",
       "start": "2027-01-24",
       "end": "2027-01-26"
+    },
+    {
+      "name": "Hall of Heroes",
+      "start": "2027-01-24",
+      "end": "2027-01-27"
     },
     {
       "name": "KVK Day 1",
@@ -507,7 +507,7 @@
       "end": "2027-02-15"
     },
     {
-      "name": "Swordland Showdown",
+      "name": "Merchant Empire Event",
       "start": "2027-02-01",
       "end": "2027-02-08"
     },
@@ -517,17 +517,17 @@
       "end": "2027-02-07"
     },
     {
-      "name": "Merchant Empire Event",
+      "name": "Alliance Brawl Event",
+      "start": "2027-02-01",
+      "end": "2027-02-08"
+    },
+    {
+      "name": "Swordland Showdown",
       "start": "2027-02-01",
       "end": "2027-02-08"
     },
     {
       "name": "Alliance Championship Event",
-      "start": "2027-02-01",
-      "end": "2027-02-08"
-    },
-    {
-      "name": "Alliance Brawl Event",
       "start": "2027-02-01",
       "end": "2027-02-08"
     },
